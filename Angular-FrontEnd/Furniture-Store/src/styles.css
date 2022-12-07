@@ -1,5 +1,5 @@
 body {
-    background-image: url("../images/background.png");
+    background-image: url("./assets/images/background.png");
     padding: 0px;
     margin: 0px;
     height: 100%;
@@ -227,3 +227,6 @@ textarea#description {
     text-shadow:4px 4px 8px blue;
     text-align: center;
 }
+
+/* TOPOGRAPHY!!! */
+
