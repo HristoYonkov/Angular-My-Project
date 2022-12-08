@@ -19,8 +19,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   exports: [
     HeaderComponent,
-    HomeComponent,
-    NotFoundComponent
+    // HomeComponent,
+    // NotFoundComponent
   ]
 })
 export class CoreModule { }
