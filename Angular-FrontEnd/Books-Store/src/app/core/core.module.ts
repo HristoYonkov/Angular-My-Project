@@ -18,9 +18,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RouterModule
   ],
   exports: [
-    HeaderComponent,
-    // HomeComponent,
-    // NotFoundComponent
+    HeaderComponent
   ]
 })
 export class CoreModule { }
