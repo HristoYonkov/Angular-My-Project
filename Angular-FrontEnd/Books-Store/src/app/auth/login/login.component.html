@@ -1,19 +1,29 @@
 <section id="login-page" class="login">
-    <form id="login-form" action="" method="">
+    <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm.value)">
         <fieldset>
             <legend>Login Form</legend>
             <p class="field">
                 <label for="email">Email</label>
                 <span class="input">
-                    <input type="text" name="email" id="email" placeholder="Email">
+                    <input #emailInput="ngModel" required="true" [email]="true" type="text" name="email" id="email" placeholder="Email" ngModel>
                 </span>
             </p>
+            <ng-container *ngIf="emailInput.touched">
+                <p *ngIf="emailInput.errors?.['email']" style="color: red;">Invalid email!</p>
+                <p *ngIf="emailInput.errors?.['required']" style="color: red;">Email required!</p>
+            </ng-container>
+
             <p class="field">
                 <label for="password">Password</label>
                 <span class="input">
-                    <input type="password" name="password" id="password" placeholder="Password">
+                    <input #passInput="ngModel" required="true" minlength="5" type="password" name="password" id="password" placeholder="Password" minlength="5" ngModel>
                 </span>
             </p>
+            <ng-container *ngIf="passInput.touched">
+                <p *ngIf="passInput.errors?.['minlength']" style="color: red;">Password Must be at least 5 characters!</p>
+                <p *ngIf="passInput.errors?.['required']" style="color: red;">Password required!</p>
+            </ng-container>
+
             <input class="button submit" type="submit" value="Login">
         </fieldset>
     </form>
