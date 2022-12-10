@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleLogin(value: {email: string, password: string}) {
-    console.log(value);
+  loginHandler(from: {email: string, password: string}) {
+    console.log(from);
   }
 }

@@ -1,36 +1,53 @@
 <section id="register-page" class="register">
-    <form id="register-form" action="" method="">
+    <form [formGroup]="form" (ngSubmit)="registerHandler(form.value)" id="register-form">
         <fieldset>
             <legend>Register Form</legend>
             <p class="field">
                 <label for="username">Username</label>
                 <span class="input">
-                    <input type="text" name="username" id="username" placeholder="Username">
+                    <input type="text" formControlName="username" id="username" placeholder="Username">
                 </span>
             </p>
-            <p style="color: red;">Incorrect Email</p>
+            <ng-container *ngIf="form.get('username')?.touched">
+                <p *ngIf="form.get('username')?.errors?.['required']" style="color: red;">Username required!</p>
+                <p *ngIf="form.get('username')?.errors?.['minlength']" style="color: red;">Username must be between 3 and 15 characters long!</p>
+                <p *ngIf="form.get('username')?.errors?.['maxlength']" style="color: red;">Username must be between 3 and 15 characters long!</p>
+            </ng-container>
+
             <p class="field">
                 <label for="email">Email</label>
                 <span class="input">
-                    <input type="text" name="email" id="email" placeholder="Email">
+                    <input type="text" formControlName="email" id="email" placeholder="Email">
                 </span>
             </p>
-            <p style="color: red;">Incorrect Email</p>
-            <p class="field">
-                <label for="password">Password</label>
-                <span class="input">
-                    <input type="password" name="password" id="password" placeholder="Password">
-                </span>
-            </p>
-            <p style="color: red;">Incorrect Email</p>
-            <p class="field">
-                <label for="repeat-pass">Repeat Password</label>
-                <span class="input">
-                    <input type="password" name="confirm-pass" id="repeat-pass" placeholder="Repeat Password">
-                </span>
-            </p>
-            <p style="color: red;">Incorrect Email</p>
-            <input class="button submit" type="submit" value="Register">
+            <ng-container *ngIf="form.get('email')?.touched">
+                <p *ngIf="form.get('email')?.errors?.['required']" style="color: red;">Email required!</p>
+                <p *ngIf="form.get('email')?.errors?.['email']" style="color: red;">Email is not valid!</p>
+            </ng-container>
+
+            <ng-container formGroupName="pass">
+                <p class="field">
+                    <label for="password">Password</label>
+                    <span class="input">
+                        <input type="password" formControlName="password" id="password" placeholder="Password">
+                    </span>
+                </p>
+                <ng-container *ngIf="form.get('pass')?.get('password')?.touched">
+                    <p *ngIf="form.get('pass')?.get('password')?.errors?.['required']" style="color: red;">Password required!</p>
+                    <p *ngIf="form.get('pass')?.get('password')?.errors?.['minlength']" style="color: red;">Password needs at least 5 characters!</p>
+                </ng-container>
+
+                <p class="field">
+                    <label for="repeat-pass">Repeat Password</label>
+                    <span class="input">
+                        <input type="password" formControlName="repass" id="repeat-pass" placeholder="Repeat Password">
+                    </span>
+                </p>
+                <p *ngIf="form.value.pass?.password !== form.value.pass?.repass
+                && form.get('pass')?.get('repass')?.touched" style="color: red;">Passwords must match!</p>
+            </ng-container>
+            <input [disabled]="form.invalid" class="button submit" type="submit" value="Register">
+            <h4>If you have an account <a style="color: tomato;" routerLink="/auth/login">Log-In!</a></h4>
         </fieldset>
     </form>
 </section>

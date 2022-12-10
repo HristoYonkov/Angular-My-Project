@@ -1,5 +1,5 @@
 <section id="login-page" class="login">
-    <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm.value)">
+    <form #loginForm="ngForm" (ngSubmit)="loginHandler(loginForm.value)">
         <fieldset>
             <legend>Login Form</legend>
             <p class="field">
@@ -12,11 +12,10 @@
                 <p *ngIf="emailInput.errors?.['email']" style="color: red;">Invalid email!</p>
                 <p *ngIf="emailInput.errors?.['required']" style="color: red;">Email required!</p>
             </ng-container>
-
             <p class="field">
                 <label for="password">Password</label>
                 <span class="input">
-                    <input #passInput="ngModel" required="true" minlength="5" type="password" name="password" id="password" placeholder="Password" minlength="5" ngModel>
+                    <input #passInput="ngModel" required="true" minlength="5" type="password" name="password" id="password" placeholder="Password" ngModel>
                 </span>
             </p>
             <ng-container *ngIf="passInput.touched">
@@ -24,7 +23,8 @@
                 <p *ngIf="passInput.errors?.['required']" style="color: red;">Password required!</p>
             </ng-container>
 
-            <input class="button submit" type="submit" value="Login">
+            <input [disabled]="loginForm.invalid" class="button submit" type="submit" value="Login">
+            <h4>If you don't have account <a style="color: tomato;" routerLink="/auth/register">Register!</a></h4>
         </fieldset>
     </form>
 </section>
