@@ -6,6 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     MyBooksComponent,
-    ProfileComponent
+    ProfileComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
