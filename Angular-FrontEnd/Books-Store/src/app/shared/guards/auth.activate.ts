@@ -12,7 +12,6 @@ export class AuthActivate implements CanActivate {
     constructor(private authService: AuthService, private router: Router) {}
 
     canActivate() {
-        console.log('Auth Activate',this.authService.user);
 
         if(this.authService.user === null) {
             this.router.navigate(['/auth/login']);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   form = this.fB.group({
     username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
@@ -20,9 +20,6 @@ export class RegisterComponent implements OnInit {
   })
 
   constructor(private fB: FormBuilder) { }
-
-  ngOnInit(): void {
-  }
 
   registerHandler(form: any) {
     console.log(form); 

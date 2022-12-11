@@ -1,4 +1,4 @@
-const bikeController = require('express').Router();
+const bookController = require('express').Router();
 
 const { hasUser } = require('../middlewares/guards');
 /// todo HAS_USER - guards
@@ -7,12 +7,12 @@ const { getAll, create, getById, update, deleteById, getByUserId, getMyBikes } =
 //todo parseError
 //todo - populate bike with _ownerId
 
-bikeController.get('/', async (req, res) => {
+bookController.get('/', async (req, res) => {
     const bikes = await getAll();
     res.status(200).json(bikes)
 });
 
-bikeController.post('/', async (req, res) => {
+bookController.post('/', async (req, res) => {
     try {
         const data = Object.assign({ _ownerId: req.user._id }, req.body)
         // console.log(req.user._id);
@@ -29,12 +29,12 @@ bikeController.post('/', async (req, res) => {
     res.end()
 });
 
-bikeController.get('/:id', async (req, res) => {
+bookController.get('/:id', async (req, res) => {
     const bike = await getById(req.params.id)
     return res.status(200).json(bike)
 });
 
-bikeController.put('/:id', async (req, res) => {
+bookController.put('/:id', async (req, res) => {
 const bike = await getById(req.params.id);
     // todo parse token
     if (req.user._id != bike._ownerId._id) {
@@ -50,7 +50,7 @@ const bike = await getById(req.params.id);
     }
 });
 
-bikeController.delete('/:id', async (req, res) => {
+bookController.delete('/:id', async (req, res) => {
     const item = await getById(req.params.id);
 
     if (req.user._id != item._ownerId) {
@@ -65,12 +65,12 @@ bikeController.delete('/:id', async (req, res) => {
     }
 });
 
-bikeController.get('/myBikes', async (req, res) => {
+bookController.get('/myBikes', async (req, res) => {
 
     const bikes = await getMyBikes(req.user._id)
     return res.status(200).json(bikes)
 })
 
 module.exports = {
-    bikeController
+    bookController
 };
