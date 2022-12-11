@@ -12,8 +12,9 @@ export class AuthActivate implements CanActivate {
     constructor(private authService: AuthService, private router: Router) {}
 
     canActivate() {
-
-        if(this.authService.user === null) {
+        const user = localStorage.getItem('token')
+        
+        if(!user) {
             this.router.navigate(['/auth/login']);
             return false
         }

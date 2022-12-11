@@ -20,7 +20,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   getUserData() {
-    return this.http.get<any>(`${apiUrl}/auth/user`).pipe(tap((userData) => {
+    return this.http.get<IUser>(`${apiUrl}/auth/user`).pipe(tap((userData) => {
       this.user = userData
     }))
   }
