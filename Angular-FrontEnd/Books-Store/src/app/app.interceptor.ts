@@ -6,12 +6,15 @@ const apiUrl = environment.apiUrl;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-    constructor() { }
-
+    token: string | null = localStorage.getItem('token')
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
-        return next.handle(req);
+        if(this.token){
+            return next.handle(req.clone({ setHeaders: { 'X-Authorization': this.token}}));
+        }else{
+            return next.handle(req.clone())
+        }
     }
+
 }
 
 export const appInterceptorProvider: Provider = {

@@ -11,7 +11,9 @@ export class LogoutComponent {
 
   constructor(private router: Router, private authService: AuthService) {
     this.authService.user = null;
+    localStorage.removeItem('token')
     this.router.navigate(['/']);
   }
 
 }
+// transportna bolnica ulica Kulhida

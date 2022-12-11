@@ -8,8 +8,8 @@
           <a class="button" routerLink="/auth/login">Login</a>
           <a class="button" routerLink="/auth/register">Register</a>
         </div>
+        <span *ngIf="!isLoggedIn">Welcome, Guest</span> 
         <!-- Logged-in users -->
-        <h1 *ngIf="!isLoggedIn">Welcome, Guest</h1> 
         <div *ngIf="isLoggedIn" id="user">
         <span>Welcome, {{user?.username}}</span>
           <a class="button" routerLink="/auth/profile">Profile</a>

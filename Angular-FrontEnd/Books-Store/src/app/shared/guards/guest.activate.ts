@@ -10,10 +10,8 @@ export class GuestActivate implements CanActivate {
 
     constructor(private authService: AuthService, private router: Router) {}
     
-    canActivate() {
-        console.log(this.authService.user);
-        
-        if(this.authService.user !== null) {
+    canActivate() {        
+        if(this.authService.user !== undefined) {
             this.router.navigate(['/']);
             return false;
         }
