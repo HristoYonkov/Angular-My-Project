@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 
-const secret = 'q-asd231adfas12321kl';
+const secret = 'daimudaserazbere';
 
 async function register(email, username, password) {
     const existing = await User.findOne({ email }).collation({ locale: 'en', strength: 2 })
@@ -62,5 +62,4 @@ module.exports = {
     register,
     login,
     parseToken,
-
 }

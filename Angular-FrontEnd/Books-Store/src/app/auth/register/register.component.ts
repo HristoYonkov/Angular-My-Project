@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { matchPaswords } from 'src/app/shared/validators/samePassValidator';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,16 +16,26 @@ export class RegisterComponent {
     email: ['', [Validators.required, Validators.email]],
     pass: this.fB.group({
       password: ['', [Validators.required, Validators.minLength(5)]],
-      repass:[]
+      repass: []
     }, {
-      validators: []
+      validators: [matchPaswords('password', 'repass')]
     }),
   })
 
-  constructor(private fB: FormBuilder) { }
+  constructor(private fB: FormBuilder, private authService: AuthService, private router: Router) { }
 
-  registerHandler(form: any) {
-    console.log(form); 
+  registerHandler() {
+    if (this.form.invalid) { return; }
+    const userData = {
+      username: this.form.value.username,
+      email: this.form.value.email,
+      password:this.form.value.pass?.password,
+      repass: this.form.value.pass?.repass
+    }
+    this.authService.register(userData).subscribe((user) => {
+      this.authService.user = user;
+      this.router.navigate(['/'])
+    })
   }
 
 }

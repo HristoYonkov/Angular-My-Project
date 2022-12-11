@@ -1,8 +1,8 @@
-const Bike = require('../models/Bike')
+const Book = require('../models/Book')
 
 
 async function getAll() {
-    return Bike.find({})
+    return Book.find({})
 
 };
 async function getByUserId(userId) {

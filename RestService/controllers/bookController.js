@@ -2,14 +2,14 @@ const bookController = require('express').Router();
 
 const { hasUser } = require('../middlewares/guards');
 /// todo HAS_USER - guards
-const { getAll, create, getById, update, deleteById, getByUserId, getMyBikes } = require('../service/bikeService');
+const { getAll, create, getById, update, deleteById, getByUserId, getMyBikes } = require('../service/bookService');
 // const { parseError } = require('../util/parser');
 //todo parseError
 //todo - populate bike with _ownerId
 
 bookController.get('/', async (req, res) => {
-    const bikes = await getAll();
-    res.status(200).json(bikes)
+    const books = await getAll();
+    res.status(200).json(books)
 });
 
 bookController.post('/', async (req, res) => {

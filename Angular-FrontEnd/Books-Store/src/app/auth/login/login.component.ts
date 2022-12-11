@@ -14,11 +14,7 @@ export class LoginComponent {
   }
   
   
-  loginHandler(from: {email: string, password: string}) {
-    this.authService.user = {
-      username: 'Pavel',
-      email: 'pavel@abv.bg'
-    }
+  loginHandler() {
     this.router.navigate(['/']);
   }
 }

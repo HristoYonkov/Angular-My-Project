@@ -2,7 +2,7 @@ const { Schema, model, Types: { ObjectId } } = require('mongoose')
 
 const URL_PATTERN = /https?:\/\/./i
 
-const bikeSchema = new Schema({
+const bookSchema = new Schema({
     brand: {
         type: String, required: true,
         minlength: [1, 'Brand must be minimum one characters!']
@@ -39,6 +39,6 @@ const bikeSchema = new Schema({
 });
 
 
-const Bike = model('Bike', bikeSchema)
+const Book = model('Book', bookSchema)
 
-module.exports = Bike
+module.exports = Book
