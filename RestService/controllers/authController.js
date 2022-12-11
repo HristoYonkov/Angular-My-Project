@@ -23,9 +23,22 @@ authController.post('/login', async (req, res) => {
         //TODOnot sure
         res.end()
     } catch (error) {
+        console.log(error);
         res.status(400).json({ error:error.message })
     }
 })
+
+authController.get('/user', async (req, res) => {
+    try {
+        const user = req.user
+        res.status(200).json(user)
+        res.end()
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ error:error.message })
+    }
+})
+
 //TODO LOGOUT
 
 
