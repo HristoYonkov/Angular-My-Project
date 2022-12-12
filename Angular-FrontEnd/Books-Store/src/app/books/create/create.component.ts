@@ -9,7 +9,7 @@ import { BookService } from '../book.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  
+
   constructor(private router: Router, private bookService: BookService) { }
 
   ngOnInit(): void {
@@ -27,14 +27,14 @@ export class CreateComponent implements OnInit {
     }
 
     this.bookService.createBook(formData).subscribe({
-      next: (a) => console.log(a),
+      next: (book) => { console.log() },
       error: (err) => {
         console.log(err.error.error);
         this.errors = err.error.error
       }
     })
     this.router.navigate(['/'])
-    
+
   }
 
 }

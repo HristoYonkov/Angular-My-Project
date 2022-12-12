@@ -6,36 +6,35 @@ async function getAll() {
 
 };
 async function getByUserId(userId) {
-    return Bike.find({ _ownerId: userId })
+    return Book.find({ _ownerId: userId })
 
 };
 async function getById(id) {
-    return Bike.findById(id).populate('_ownerId')
+    return Book.findById(id).populate('_ownerId')
 };
 
 async function create(data) {
     return Book.create(data)
 };
 
-async function update(id, bike) {
-    const existing = await Bike.findById(id);
+async function update(id, book) {
+    const existing = await Book.findById(id);
 
-    existing.brand = bike.brand;
-    existing.model = bike.model;
-    existing.year = bike.year;
-    existing.power = bike.power;
-    existing.price = bike.price;
-    existing.description = bike.description;
-    existing.imgageUrl = book.imgageUrl;
+    existing.title = book.title;
+    existing.author = book.author;
+    existing.description = book.description;
+    existing.imageUrl = book.imageUrl;
+    existing.genre = book.genre;
+    existing.price = book.price;
     return existing.save()
 }
 
 async function deleteById(id) {
-    return Bike.findByIdAndDelete(id)
+    return Book.findByIdAndDelete(id)
 };
 
-async function getMyBikes(id) {
-    return await Bike.find({ _ownerId: id })
+async function getMyBooks(id) {
+    return await Book.find({ _ownerId: id })
 }
 
 
@@ -46,5 +45,5 @@ module.exports = {
     update,
     deleteById,
     getByUserId,
-    getMyBikes
+    getMyBooks
 }
