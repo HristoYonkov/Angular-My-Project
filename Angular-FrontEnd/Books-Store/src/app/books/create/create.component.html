@@ -1,37 +1,60 @@
 <!-- Create Page ( Only for logged-in users ) -->
 <section id="create-page" class="create">
-    <form id="create-form" action="" method="">
+    <form id="create-form" #createForm="ngForm" (ngSubmit)="createHandler(createForm)">
         <fieldset>
             <legend>Add new Book</legend>
             <p class="field">
                 <label for="title">Title</label>
                 <span class="input">
-                    <input type="text" name="title" id="title" placeholder="Title">
+                    <input ngModel #titleInput="ngModel" required="true" minlength="4" type="text" name="title"
+                        id="title" placeholder="Title">
                 </span>
             </p>
+            <ng-container *ngIf="titleInput.touched">
+                <p *ngIf="titleInput.errors?.['required']" style="color: red;">Title is required!</p>
+                <p *ngIf="titleInput.errors?.['minlength']" style="color: red;">Title must be at least 4 characters!</p>
+            </ng-container>
+
             <p class="field">
                 <label for="author">Author</label>
                 <span class="input">
-                    <input type="text" name="author" id="author" placeholder="Author">
+                    <input ngModel #authorInput="ngModel" minlength="2" required="true" type="text" name="author"
+                        id="author" placeholder="Author">
                 </span>
             </p>
+            <ng-container *ngIf="authorInput.touched">
+                <p *ngIf="authorInput.errors?.['required']" style="color: red;">Author is required!</p>
+                <p *ngIf="authorInput.errors?.['minlength']" style="color: red;">Author must be at least 2 characters!
+                </p>
+            </ng-container>
+
             <p class="field">
                 <label for="description">Description</label>
                 <span class="input">
-                    <textarea name="description" id="description" placeholder="Description"></textarea>
+                    <textarea ngModel #descriptionInput="ngModel" required="true" minlength="10" maxlength="100"name="description" id="description" placeholder="Description"></textarea>
                 </span>
             </p>
+            <ng-container *ngIf="descriptionInput.touched">
+                <p *ngIf="descriptionInput.errors?.['required']" style="color: red;">Description is required!</p>
+                <p *ngIf="descriptionInput.errors?.['minlength']" style="color: red;">Description must be 10 to 100 characters!</p>
+            </ng-container>
+
             <p class="field">
                 <label for="image">Image</label>
                 <span class="input">
-                    <input type="text" name="imageUrl" id="image" placeholder="Image">
+                    <input ngModel #imageInput="ngModel" required="true" pattern="^https?://.+" type="text" name="imageUrl" id="image" placeholder="Image">
                 </span>
             </p>
+            <ng-container *ngIf="imageInput.touched">
+                <p *ngIf="imageInput.errors?.['required']" style="color: red;">Image is required!</p>
+                <p *ngIf="imageInput.errors?.['pattern']" style="color: red;">Image must start with 'http' or 'https'!</p>
+            </ng-container>
+            
             <p class="field">
-                <label for="type">Genre</label>
+                <label for="genre">Genre</label>
                 <span class="input">
-                    <select id="type" name="type">
-                        <option value="Fiction">Fantasy</option>
+                    <select ngModel #genreInput="ngModel" required="true" id="type" name="genre">
+                        <option value="Fantasy">Fantasy</option>
                         <option value="Romance">Romance</option>
                         <option value="Mistery">Mistery</option>
                         <option value="Classic">Criminal</option>
@@ -39,13 +62,23 @@
                     </select>
                 </span>
             </p>
+            <ng-container *ngIf="genreInput.touched">
+                <p *ngIf="genreInput.errors?.['required']" style="color: red;">Genre is required!</p>
+            </ng-container>
+
             <p class="field">
                 <label for="price">Price</label>
                 <span class="input">
-                    <input type="number" name="price" id="price" placeholder="$">
+                    <input ngModel #priceInput="ngModel" required="true" min='5' type="number" name="price" id="price"
+                        placeholder="$">
                 </span>
+                <ng-container *ngIf="priceInput.touched">
+                    <p *ngIf="priceInput.errors?.['required']" style="color: red;">Price is required!</p>
+                    <p *ngIf="priceInput.errors?.['min']" style="color: red;">Price minimum is 5$!</p>
+                </ng-container>
+
             </p>
-            <input class="button submit" type="submit" value="Add Book">
+            <input [disabled]="createForm.invalid" class="button submit" type="submit" value="Add Book">
         </fieldset>
     </form>
 </section>
