@@ -26,7 +26,7 @@ async function update(id, bike) {
     existing.power = bike.power;
     existing.price = bike.price;
     existing.description = bike.description;
-    existing.img = bike.img;
+    existing.imgageUrl = book.imgageUrl;
     return existing.save()
 }
 

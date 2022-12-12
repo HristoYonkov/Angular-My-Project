@@ -16,7 +16,7 @@ const bookSchema = new Schema({
         minlength: [10, 'Description must be at least 10 characters long!'],
         maxlength: [100, 'Description cannot be more than 100 characters long!']
     },
-    img: {
+    imageUrl: {
         type: String,
         validate: {
             validator: (value) => URL_PATTERN.test(value),
@@ -24,7 +24,7 @@ const bookSchema = new Schema({
         }
     },
     genre: { type: String, required: true, enum: {
-        values: ['fantasy', 'romance', 'mistery', 'criminal', 'other'],
+        values: ['Fantasy', 'Romance', 'Mistery', 'Criminal', 'Other'],
         message: 'Genre is not supported!'}
     },
     price: {

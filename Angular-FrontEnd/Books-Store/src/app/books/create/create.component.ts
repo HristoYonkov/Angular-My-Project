@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BookService } from '../book.service';
 
 @Component({
   selector: 'app-create',
@@ -8,13 +10,30 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateComponent implements OnInit {
   
-  constructor() { }
+  constructor(private router: Router, private bookService: BookService) { }
 
   ngOnInit(): void {
   }
+  errors: string | undefined = undefined;
 
   createHandler(form: NgForm) {
-    console.log(form.value);
+    const formData = {
+      title: form.value.title,
+      author: form.value.author,
+      description: form.value.description,
+      imageUrl: form.value.imageUrl,
+      genre: form.value.genre,
+      price: form.value.price,
+    }
+
+    this.bookService.createBook(formData).subscribe({
+      next: (a) => console.log(a),
+      error: (err) => {
+        console.log(err.error.error);
+        this.errors = err.error.error
+      }
+    })
+    this.router.navigate(['/'])
     
   }
 
