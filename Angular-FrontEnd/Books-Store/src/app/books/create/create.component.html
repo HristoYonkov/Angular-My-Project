@@ -10,6 +10,12 @@
                 </span>
             </p>
             <p class="field">
+                <label for="author">Author</label>
+                <span class="input">
+                    <input type="text" name="author" id="author" placeholder="Author">
+                </span>
+            </p>
+            <p class="field">
                 <label for="description">Description</label>
                 <span class="input">
                     <textarea name="description" id="description" placeholder="Description"></textarea>
@@ -22,7 +28,7 @@
                 </span>
             </p>
             <p class="field">
-                <label for="type">Type</label>
+                <label for="type">Genre</label>
                 <span class="input">
                     <select id="type" name="type">
                         <option value="Fiction">Fantasy</option>
@@ -31,6 +37,12 @@
                         <option value="Classic">Criminal</option>
                         <option value="Other">Other</option>
                     </select>
+                </span>
+            </p>
+            <p class="field">
+                <label for="price">Price</label>
+                <span class="input">
+                    <input type="number" name="price" id="price" placeholder="$">
                 </span>
             </p>
             <input class="button submit" type="submit" value="Add Book">

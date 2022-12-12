@@ -3,25 +3,13 @@ const { Schema, model, Types: { ObjectId } } = require('mongoose')
 const URL_PATTERN = /https?:\/\/./i
 
 const bookSchema = new Schema({
-    brand: {
+    title: {
         type: String, required: true,
-        minlength: [1, 'Brand must be minimum one characters!']
+        minlength: [4, 'Title must be minimum 4 characters!']
     },
-    model: {
+    author: {
         type: String, required: true,
-        minlength: [1, 'Model must be minimum one characters!']
-    },
-    year: {
-        type: Number, required: true,
-        min: [1885, 'First bike was made in 1885'],
-        max: [2022, 'We are still in 2022!!!']
-    },
-    power: {
-        type: Number, required: true,
-        min: [0.5, 'Minumum power 0.5 HP!'],
-    },
-    price: {
-        type: Number, required: true, min: [0.01, 'Price must be positive number!']
+        minlength: [2, 'Author must be minimum 2 characters!']
     },
     description: {
         type: String, required: true,
@@ -34,6 +22,13 @@ const bookSchema = new Schema({
             validator: (value) => URL_PATTERN.test(value),
             message: 'Invalid URL, must start with HTTP/HTTPS'
         }
+    },
+    genre: { type: String, required: true, enum: {
+        values: ['fantasy', 'romance', 'mistery', 'criminal', 'other'],
+        message: 'Genre is not supported!'}
+    },
+    price: {
+        type: Number, required: true, min: [0.01, 'Price must be positive number!']
     },
     _ownerId: { type: ObjectId, ref: 'User', required: true }
 });
