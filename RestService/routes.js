@@ -8,6 +8,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', authController)
-router.use('/books', bookController)
+router.use('/book', bookController)
 
 module.exports = router

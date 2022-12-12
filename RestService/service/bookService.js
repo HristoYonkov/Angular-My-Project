@@ -14,7 +14,7 @@ async function getById(id) {
 };
 
 async function create(data) {
-    return Bike.create(data)
+    return Book.create(data)
 };
 
 async function update(id, bike) {

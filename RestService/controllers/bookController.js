@@ -19,8 +19,8 @@ bookController.post('/', async (req, res) => {
         // console.log(req.body);
         // const body = req.body
         // body['_ownerId'] = req.user._id
-        const bike = await create(data);
-        res.json(bike)
+        const book = await create(data);
+        res.json(book)
     } catch (err) {
         // const message = parseError(err)
         console.log(err + 'errr');

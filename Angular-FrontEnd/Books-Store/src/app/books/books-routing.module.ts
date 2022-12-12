@@ -1,11 +1,12 @@
 import { RouterModule, Routes } from "@angular/router";
+import { AuthActivate } from "../shared/guards/auth.activate";
 import { CreateComponent } from "./create/create.component";
 import { DetailsComponent } from "./details/details.component";
 import { EditComponent } from "./edit/edit.component";
 
 const routes: Routes = [
     {
-        path: 'books',
+        path: 'book',
         // ---- Guard friendly way !!!
         children: [
             {
@@ -14,11 +15,13 @@ const routes: Routes = [
             },
             {
                 path: 'edit',
-                component: EditComponent
+                component: EditComponent,
+                canActivate: [AuthActivate]
             },
             {
                 path: 'create',
-                component: CreateComponent
+                component: CreateComponent,
+                canActivate: [AuthActivate]
             }
         ]
     }
