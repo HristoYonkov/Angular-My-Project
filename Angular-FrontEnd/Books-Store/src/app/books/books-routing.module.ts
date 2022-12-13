@@ -19,7 +19,7 @@ const routes: Routes = [
                 canActivate: [AuthActivate]
             },
             {
-                path: 'create/:id',
+                path: 'create',
                 component: CreateComponent,
                 canActivate: [AuthActivate]
             }

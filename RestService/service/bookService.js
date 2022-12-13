@@ -33,9 +33,9 @@ async function deleteById(id) {
     return Book.findByIdAndDelete(id)
 };
 
-async function getMyBooks(id) {
-    return await Book.find({ _ownerId: id })
-}
+// async function getMyBooks(id) {
+//     return await Book.find({ _ownerId: id })
+// }
 
 
 module.exports = {
@@ -45,5 +45,5 @@ module.exports = {
     update,
     deleteById,
     getByUserId,
-    getMyBooks
+    // getMyBooks
 }

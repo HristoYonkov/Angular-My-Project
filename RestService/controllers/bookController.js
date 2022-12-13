@@ -2,7 +2,7 @@ const bookController = require('express').Router();
 
 const { hasUser } = require('../middlewares/guards');
 /// todo HAS_USER - guards
-const { getAll, create, getById, update, deleteById, getByUserId, getMyBikes } = require('../service/bookService');
+const { getAll, create, getById, update, deleteById, getByUserId, getMyBooks } = require('../service/bookService');
 // const { parseError } = require('../util/parser');
 //todo parseError
 //todo - populate bike with _ownerId
@@ -29,15 +29,22 @@ bookController.post('/', async (req, res) => {
     res.end()
 });
 
+bookController.get('/my-books', async (req, res) => {
+    console.log(req.user);
+    
+    const books = await getByUserId(req.user._id)
+    return res.status(200).json(books)
+})
+
 bookController.get('/:id', async (req, res) => {
     const book = await getById(req.params.id)
     return res.status(200).json(book)
 });
 
 bookController.put('/:id', async (req, res) => {
-const bike = await getById(req.params.id);
+const book = await getById(req.params.id);
     // todo parse token
-    if (req.user._id != bike._ownerId._id) {
+    if (req.user._id != book._ownerId._id) {
         return res.status(403).json({ message: 'You cannot modify this record' })
     }
     try {
@@ -65,11 +72,6 @@ bookController.delete('/:id', async (req, res) => {
     }
 });
 
-bookController.get('/myBikes', async (req, res) => {
-
-    const bikes = await getMyBikes(req.user._id)
-    return res.status(200).json(bikes)
-})
 
 module.exports = {
     bookController

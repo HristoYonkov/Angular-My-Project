@@ -1,9 +1,9 @@
 <!-- Details Page ( for Guests and Users ) -->
 <section id="details-page" class="details">
     <div class="book-information">
-        <h3>{{oneBook.title}}</h3>
-        <p class="type">Genre: {{oneBook.genre}}</p>
-        <p class="img"><img src={{oneBook.imageUrl}}></p>
+        <h3>{{oneBook?.title}}</h3>
+        <p class="type">Genre: {{oneBook?.genre}}</p>
+        <p class="img"><img src={{oneBook?.imageUrl}}></p>
         <div class="actions">
             <!-- Edit/Delete buttons ( Only for creator of this book )  -->
             <a class="button" href="/books/edit">Edit</a>
@@ -23,6 +23,6 @@
     </div>
     <div class="book-description">
         <h3>Description:</h3>
-        <p>{{oneBook.description}}</p>
+        <p>{{oneBook?.description}}</p>
     </div>
 </section>

@@ -39,5 +39,9 @@ export class AuthService {
     }))
   }
 
+  logout() {
+    this.user = null;
+    return localStorage.removeItem('token')
+  }
 
 }

@@ -15,16 +15,20 @@ export class DetailsComponent implements OnInit {
     private bookService: BookService) { }
 
   oneBook: any | null = null
-  // user: any | null = null;
+  user: any | null = null;
 
   ngOnInit(): void {
     const bookId = this.activatedRoute.snapshot.params['id'];
-    // this.authService.getUserData().subscribe({
-    //   next: (user) => {
-    //     console.log(user);
-    //     this.user = user
-    //   },
-    // });
+
+    if (localStorage.getItem('token')) {
+      
+      this.authService.getUserData().subscribe({
+        next: (user) => {
+          console.log(user);
+          this.user = user
+        },
+      });
+    }
     
     this.bookService.getBook(bookId).subscribe({
       next: (book) => {
