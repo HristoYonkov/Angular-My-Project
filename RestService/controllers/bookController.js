@@ -30,8 +30,8 @@ bookController.post('/', async (req, res) => {
 });
 
 bookController.get('/:id', async (req, res) => {
-    const bike = await getById(req.params.id)
-    return res.status(200).json(bike)
+    const book = await getById(req.params.id)
+    return res.status(200).json(book)
 });
 
 bookController.put('/:id', async (req, res) => {

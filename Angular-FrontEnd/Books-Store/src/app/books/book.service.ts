@@ -19,4 +19,8 @@ export class BookService {
     loadBooks() {
         return this.http.get<IBook[]>(`${apiUrl}/book`)
     }
+
+    getBook(bookId: string) {
+        return this.http.get<IBook>(`${apiUrl}/book/${bookId}`)
+    }
 }

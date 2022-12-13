@@ -10,16 +10,16 @@ const routes: Routes = [
         // ---- Guard friendly way !!!
         children: [
             {
-                path: 'details',
+                path: 'details/:id',
                 component: DetailsComponent
             },
             {
-                path: 'edit',
+                path: 'edit/:id',
                 component: EditComponent,
                 canActivate: [AuthActivate]
             },
             {
-                path: 'create',
+                path: 'create/:id',
                 component: CreateComponent,
                 canActivate: [AuthActivate]
             }
