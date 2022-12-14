@@ -10,7 +10,7 @@
                         id="title" placeholder="Title">
                 </span>
             </p>
-            <ng-container *ngIf="titleInput.touched">
+            <ng-container *ngIf="titleInput.touched || createForm.submitted">
                 <p *ngIf="titleInput.errors?.['required']" style="color: red;">Title is required!</p>
                 <p *ngIf="titleInput.errors?.['minlength']" style="color: red;">Title must be at least 4 characters!</p>
             </ng-container>
@@ -22,7 +22,7 @@
                         id="author" placeholder="Author">
                 </span>
             </p>
-            <ng-container *ngIf="authorInput.touched">
+            <ng-container *ngIf="authorInput.touched || createForm.submitted">
                 <p *ngIf="authorInput.errors?.['required']" style="color: red;">Author is required!</p>
                 <p *ngIf="authorInput.errors?.['minlength']" style="color: red;">Author must be at least 2 characters!
                 </p>
@@ -34,7 +34,7 @@
                     <textarea ngModel #descriptionInput="ngModel" required="true" minlength="10" maxlength="100"name="description" id="description" placeholder="Description"></textarea>
                 </span>
             </p>
-            <ng-container *ngIf="descriptionInput.touched">
+            <ng-container *ngIf="descriptionInput.touched || createForm.submitted">
                 <p *ngIf="descriptionInput.errors?.['required']" style="color: red;">Description is required!</p>
                 <p *ngIf="descriptionInput.errors?.['minlength']" style="color: red;">Description must be 10 to 100 characters!</p>
             </ng-container>
@@ -45,7 +45,7 @@
                     <input ngModel #imageInput="ngModel" required="true" pattern="^https?://.+" type="text" name="imageUrl" id="image" placeholder="Image">
                 </span>
             </p>
-            <ng-container *ngIf="imageInput.touched">
+            <ng-container *ngIf="imageInput.touched || createForm.submitted">
                 <p *ngIf="imageInput.errors?.['required']" style="color: red;">Image is required!</p>
                 <p *ngIf="imageInput.errors?.['pattern']" style="color: red;">Image must start with 'http' or 'https'!</p>
             </ng-container>
@@ -62,7 +62,7 @@
                     </select>
                 </span>
             </p>
-            <ng-container *ngIf="genreInput.touched">
+            <ng-container *ngIf="genreInput.touched || createForm.submitted">
                 <p *ngIf="genreInput.errors?.['required']" style="color: red;">Genre is required!</p>
             </ng-container>
 
@@ -72,13 +72,13 @@
                     <input ngModel #priceInput="ngModel" required="true" min='5' type="number" name="price" id="price"
                         placeholder="$">
                 </span>
-                <ng-container *ngIf="priceInput.touched">
+                <ng-container *ngIf="priceInput.touched || createForm.submitted">
                     <p *ngIf="priceInput.errors?.['required']" style="color: red;">Price is required!</p>
                     <p *ngIf="priceInput.errors?.['min']" style="color: red;">Price minimum is 5$!</p>
                 </ng-container>
 
             </p>
-            <input [disabled]="createForm.invalid" class="button submit" type="submit" value="Add Book">
+            <input class="button submit" type="submit" value="Add Book">
         </fieldset>
     </form>
 </section>

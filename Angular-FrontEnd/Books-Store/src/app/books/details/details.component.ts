@@ -6,7 +6,7 @@ import { BookService } from '../book.service';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+  styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit {
 
@@ -15,20 +15,18 @@ export class DetailsComponent implements OnInit {
     private bookService: BookService) { }
 
   oneBook: any | null = null
-  user: any | null = null;
+  // user: any | null = null;
+
+  get isLoggedIn() {
+    return this.authService.isLogegdIn
+  };
+
+  get user() {
+    return this.authService.user
+  }
 
   ngOnInit(): void {
     const bookId = this.activatedRoute.snapshot.params['id'];
-
-    if (localStorage.getItem('token')) {
-      
-      this.authService.getUserData().subscribe({
-        next: (user) => {
-          console.log(user);
-          this.user = user
-        },
-      });
-    }
     
     this.bookService.getBook(bookId).subscribe({
       next: (book) => {

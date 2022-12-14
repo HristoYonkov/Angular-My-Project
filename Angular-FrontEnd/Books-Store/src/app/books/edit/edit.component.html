@@ -1,38 +1,79 @@
 <!-- Edit Page ( Only for the creator )-->
 <section id="edit-page" class="edit">
-    <form id="edit-form">
+    <form id="edit-form" #editForm="ngForm" (ngSubmit)="updateHandler(editForm)">
         <fieldset>
             <legend>Edit my Book</legend>
             <p class="field">
                 <label for="title">Title</label>
                 <span class="input">
-                    <input type="text" name="title" id="title" value="A Court of Thorns and Roses">
+                    <input ngModel #titleInput="ngModel" required="true" minlength="4" type="text" name="title"
+                        id="title" placeholder="Title" value={{oneBook?.title}}>
                 </span>
             </p>
+            <ng-container *ngIf="titleInput.touched">
+                <p *ngIf="titleInput.errors?.['required']" style="color: red;">Title is required!</p>
+                <p *ngIf="titleInput.errors?.['minlength']" style="color: red;">Title must be at least 4 characters!</p>
+            </ng-container>
+
+            <p class="field">
+                <label for="author">Author</label>
+                <span class="input">
+                    <input ngModel #authorInput="ngModel" minlength="2" required="true" type="text" name="author"
+                        id="author" placeholder="Author" value={{oneBook?.author}}>
+                </span>
+            </p>
+            <ng-container *ngIf="authorInput.touched">
+                <p *ngIf="authorInput.errors?.['required']" style="color: red;">Author is required!</p>
+                <p *ngIf="authorInput.errors?.['minlength']" style="color: red;">Author must be at least 2 characters!
+                </p>
+            </ng-container>
+
             <p class="field">
                 <label for="description">Description</label>
                 <span class="input">
-                    <textarea name="description"
-                        id="description">Feyre's survival rests upon her ability to hunt and kill – the forest where she lives is a cold, bleak place in the long winter months. So when she spots a deer in the forest being pursued by a wolf, she cannot resist fighting it for the flesh. But to do so, she must kill the predator and killing something so precious comes at a price ...</textarea>
+                    <textarea ngModel #descriptionInput="ngModel" required="true" minlength="10" maxlength="100" name="description" id="description" placeholder="Description" value={{oneBook?.description}}></textarea>
                 </span>
             </p>
+            <ng-container *ngIf="descriptionInput.touched">
+                <p *ngIf="descriptionInput.errors?.['required']" style="color: red;">Description is required!</p>
+                <p *ngIf="descriptionInput.errors?.['minlength']" style="color: red;">Description must be 10 to 100 characters!</p>
+            </ng-container>
+
             <p class="field">
                 <label for="image">Image</label>
                 <span class="input">
-                    <input type="text" name="imageUrl" id="image" value="/images/book1.png">
+                    <input value={{oneBook?.imageUrl}} ngModel #imageInput="ngModel" required="true" pattern="^https?://.+" type="text" name="imageUrl" id="image" placeholder="Image">
                 </span>
             </p>
+            <ng-container *ngIf="imageInput.touched">
+                <p *ngIf="imageInput.errors?.['required']" style="color: red;">Image is required!</p>
+                <p *ngIf="imageInput.errors?.['pattern']" style="color: red;">Image must start with 'http' or 'https'!</p>
+            </ng-container>
+
             <p class="field">
-                <label for="type">Type</label>
+                <label for="genre">Genre</label>
                 <span class="input">
-                    <select id="type" name="type" value="Fiction">
-                        <option value="Fiction" selected>Fiction</option>
+                    <select value={{oneBook?.genre}} ngModel #genreInput="ngModel" required="true" id="type" name="genre">
+                        <option value="Fantasy">Fantasy</option>
                         <option value="Romance">Romance</option>
                         <option value="Mistery">Mistery</option>
-                        <option value="Classic">Clasic</option>
+                        <option value="Classic">Criminal</option>
                         <option value="Other">Other</option>
                     </select>
                 </span>
+            </p>
+
+            <p class="field">
+                <label for="price">Price</label>
+                <span class="input">
+                    <input ngModel #priceInput="ngModel" required="true" min='5' type="number" name="price" id="price"
+                        placeholder="$" value={{oneBook?.price}}>
+                </span>
+                <ng-container *ngIf="priceInput.touched">
+                    <p *ngIf="priceInput.errors?.['required']" style="color: red;">Price is required!</p>
+                    <p *ngIf="priceInput.errors?.['min']" style="color: red;">Price minimum is 5$!</p>
+                </ng-container>
+
             </p>
             <input class="button submit" type="submit" value="Save">
         </fieldset>

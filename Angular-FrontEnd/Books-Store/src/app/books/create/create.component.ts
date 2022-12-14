@@ -14,7 +14,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   errors: string | undefined = undefined;
 
   createHandler(form: NgForm) {
@@ -27,6 +27,8 @@ export class CreateComponent implements OnInit {
       price: form.value.price,
     }
 
+    if (form.invalid) { return; }
+    
     this.bookService.createBook(formData).subscribe({
       next: (book) => { console.log() },
       error: (err) => {

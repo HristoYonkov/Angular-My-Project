@@ -5,7 +5,7 @@ import { IBook } from 'src/app/shared/interfaces/book';
 @Component({
   selector: 'app-my-books',
   templateUrl: './my-books.component.html',
-  styleUrls: ['./my-books.component.css']
+  styleUrls: ['./my-books.component.css'],
 })
 export class MyBooksComponent implements OnInit {
   
@@ -16,6 +16,7 @@ export class MyBooksComponent implements OnInit {
   ifBooks: boolean = false;
 
   ngOnInit(): void {
+    
     this.bookService.getMyBooks().subscribe({
       next: (books) => {
         this.bookList = books
@@ -27,6 +28,7 @@ export class MyBooksComponent implements OnInit {
         console.log(err);
       }
     })
+    
   }
-
+  
 }
