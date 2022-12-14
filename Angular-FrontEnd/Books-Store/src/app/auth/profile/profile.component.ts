@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from 'src/app/books/book.service';
+import { getUser } from 'src/app/shared/authItems';
 import { IBook } from 'src/app/shared/interfaces/book';
 
 @Component({
@@ -13,8 +14,10 @@ export class ProfileComponent implements OnInit {
   constructor(private bookService: BookService) { }
 
   ifBooks: boolean = false;
+  user: any | null;
 
   ngOnInit(): void {
+    this.user = getUser()
     this.bookService.loadBooks().subscribe({
       next: (books) => {
         this.bookList = books

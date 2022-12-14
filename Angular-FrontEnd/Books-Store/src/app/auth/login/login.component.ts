@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { setUser } from 'src/app/shared/authItems';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -27,8 +28,8 @@ export class LoginComponent {
     }
 
     this.authService.login(userData).subscribe((user) => {
-      // this.authService.user = user;
-      this.router.navigate(['/'])
+      setUser(user)
+      this.router.navigate(['/']);
     })
 
     // this.router.navigate(['/']);

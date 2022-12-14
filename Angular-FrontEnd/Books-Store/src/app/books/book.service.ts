@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { AuthService } from "../auth/auth.service";
+import { getUser } from "../shared/authItems";
 import { IBook } from "../shared/interfaces/book";
 
 const apiUrl = environment.apiUrl;
@@ -15,7 +16,7 @@ export class BookService {
 
     
     createBook(formData: object) {
-        return this.http.post(apiUrl + '/book', formData)
+        return this.http.post(apiUrl + '/book', formData, { headers: { 'x-authorization': getUser().accessToken } })
     }
     
     loadBooks() {
@@ -27,10 +28,15 @@ export class BookService {
     }
     
     getMyBooks() {
-        return this.http.get<IBook[]>(`${apiUrl}/book/my-books`)
+        return this.http.get<IBook[]>(`${apiUrl}/book/my-books`,  { headers: { 'x-authorization': getUser().accessToken } })
     }
 
     updateBook(book: {}, id: string) {
-    return this.http.put(`${apiUrl}/book/${id}`, book)
+    return this.http.put(`${apiUrl}/book/${id}`, book, { headers: { 'x-authorization': getUser().accessToken } })
+    }
+
+    deleteBook(id: string) {
+        console.log(id);
+        return this.http.delete(`${apiUrl}/book/delete/${id}`, { headers: { 'x-authorization': getUser().accessToken } })
     }
 }

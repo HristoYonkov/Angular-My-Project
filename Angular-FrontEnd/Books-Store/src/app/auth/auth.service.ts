@@ -13,9 +13,9 @@ export class AuthService {
 
   user: IUser | null = null;
 
-  get isLogegdIn() {
-    return this.user !== null
-  }
+  // get isLogegdIn() {
+  //   return this.user !== null
+  // }
 
   constructor(private http: HttpClient) { }
 

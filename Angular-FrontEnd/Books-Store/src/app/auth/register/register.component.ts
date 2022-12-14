@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { setUser } from 'src/app/shared/authItems';
 import { matchPaswords } from 'src/app/shared/validators/samePassValidator';
 import { AuthService } from '../auth.service';
 
@@ -33,7 +34,7 @@ export class RegisterComponent {
       repass: this.form.value.pass?.repass
     }
     this.authService.register(userData).subscribe((user) => {
-      this.authService.user = user;
+      setUser(user)
       this.router.navigate(['/'])
     })
   }

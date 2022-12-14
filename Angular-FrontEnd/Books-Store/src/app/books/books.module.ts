@@ -5,6 +5,7 @@ import { BooksRoutingModule } from './books-routing.module';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
 import { FormsModule } from '@angular/forms';
+import { DeleteComponent } from './delete/delete.component';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     DetailsComponent,
     EditComponent,
-    CreateComponent
+    CreateComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,

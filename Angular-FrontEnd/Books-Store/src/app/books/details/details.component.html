@@ -1,32 +1,27 @@
 <!-- Details Page ( for Guests and Users ) -->
 <section id="details-page" class="details">
+    
     <div class="book-information">
         <h3>{{oneBook?.title}}</h3>
         <p class="type">Genre: {{oneBook?.genre}}</p>
         <p class="img"><img src={{oneBook?.imageUrl}}></p>
+        
         <div class="actions">
-            <!-- Edit/Delete buttons ( Only for creator of this book )  -->
-            <!-- <a class="button" href="/books/edit">Edit</a>
-            <a class="button" href="a function in details">Delete</a> -->
-
-            <!-- Bonus -->
-            <!-- Like button ( Only for logged-in users, which is not creators of the current book ) -->
             <ng-container *ngIf="user">
                 <a *ngIf="oneBook?._ownerId._id !== user?._id" class="button" routerLink="a function in details">Buy</a>
             </ng-container>
-            <div class="likes">
-                <!-- <img class="hearts" src="../../../assets/images/heart.png"> -->
-                <span id="total-likes">$:1321</span>
-            </div>
             
-            <!-- ( for Guests and Users )  -->
-            <!-- Bonus -->
+            <div class="likes">
+                <span id="total-likes">$: {{oneBook?.price}}</span>
+            </div>
         </div>
     </div>
+    <h3 class="type">Author: {{oneBook?.author}}</h3>
+
     <div class="book-description">
         <h3>Description:</h3>
         <p>{{oneBook?.description}}</p>
-        <p *ngIf="oneBook?._ownerId._id === user?._id" style="color: red;">This is your book!</p>
-        <p *ngIf="!user" style="color: red">Log in if you want this book!</p>
+        <h1 *ngIf="oneBook?._ownerId._id === user?._id" style="color: red;">This is your book!</h1>
+        <h1 *ngIf="!user" style="color: red">Log in if you want this book!</h1>
     </div>
 </section>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { getUser } from 'src/app/shared/authItems';
 import { BookService } from '../book.service';
 
 @Component({
@@ -15,22 +16,16 @@ export class DetailsComponent implements OnInit {
     private bookService: BookService) { }
 
   oneBook: any | null = null
-  // user: any | null = null;
 
-  get isLoggedIn() {
-    return this.authService.isLogegdIn
-  };
-
-  get user() {
-    return this.authService.user
-  }
-
+  user: any | null = null
+  
   ngOnInit(): void {
     const bookId = this.activatedRoute.snapshot.params['id'];
+    this.user = getUser()
+    console.log(this.user);
     
     this.bookService.getBook(bookId).subscribe({
       next: (book) => {
-        console.log(book);
         
         this.oneBook = book
       },

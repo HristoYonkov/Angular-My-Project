@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { getUser } from 'src/app/shared/authItems';
+
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,14 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
   
   get isLoggedIn() {
-    return this.authService.isLogegdIn
+    return localStorage.getItem('token')
   };
 
   get user() {
-    return this.authService.user
+    return getUser()
   }
+
 }

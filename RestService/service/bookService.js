@@ -30,6 +30,7 @@ async function update(id, book) {
 }
 
 async function deleteById(id) {
+    console.log(id);
     return Book.findByIdAndDelete(id)
 };
 

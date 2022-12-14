@@ -30,6 +30,9 @@ const bookSchema = new Schema({
     price: {
         type: Number, required: true, min: [0.01, 'Price must be positive number!']
     },
+    buyers: {
+
+    },
     _ownerId: { type: ObjectId, ref: 'User', required: true }
 });
 

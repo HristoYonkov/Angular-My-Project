@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { AuthActivate } from "../shared/guards/auth.activate";
 import { CreateComponent } from "./create/create.component";
+import { DeleteComponent } from "./delete/delete.component";
 import { DetailsComponent } from "./details/details.component";
 import { EditComponent } from "./edit/edit.component";
 
@@ -21,6 +22,11 @@ const routes: Routes = [
             {
                 path: 'create',
                 component: CreateComponent,
+                canActivate: [AuthActivate]
+            },
+            {
+                path: 'delete/:id',
+                component: DeleteComponent,
                 canActivate: [AuthActivate]
             }
         ]
