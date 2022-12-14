@@ -35,4 +35,10 @@ export class DetailsComponent implements OnInit {
     })
   }
 
+  buyBook(bookId: string, userId: string) {
+    console.log('CLICK');
+    this.bookService.buyBook(bookId, userId)
+    
+  }
+
 }

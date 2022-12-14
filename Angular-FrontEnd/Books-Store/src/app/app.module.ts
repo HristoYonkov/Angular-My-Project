@@ -20,7 +20,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  // providers: [appInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

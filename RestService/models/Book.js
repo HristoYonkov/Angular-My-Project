@@ -23,16 +23,16 @@ const bookSchema = new Schema({
             message: 'Invalid URL, must start with HTTP/HTTPS'
         }
     },
-    genre: { type: String, required: true, enum: {
-        values: ['Fantasy', 'Romance', 'Mistery', 'Criminal', 'Other'],
-        message: 'Genre is not supported!'}
+    genre: {
+        type: String, required: true, enum: {
+            values: ['Fantasy', 'Romance', 'Mistery', 'Criminal', 'Other'],
+            message: 'Genre is not supported!'
+        }
     },
     price: {
         type: Number, required: true, min: [0.01, 'Price must be positive number!']
     },
-    buyers: {
-
-    },
+    buyers: { type: [ObjectId], ref: 'User', default: [] },
     _ownerId: { type: ObjectId, ref: 'User', required: true }
 });
 

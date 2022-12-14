@@ -36,7 +36,12 @@ export class BookService {
     }
 
     deleteBook(id: string) {
-        console.log(id);
         return this.http.delete(`${apiUrl}/book/delete/${id}`, { headers: { 'x-authorization': getUser().accessToken } })
+    }
+
+    buyBook(bookId: string, userId: string) {
+        console.log('BUY BOOK');
+        
+        return this.http.put(`${apiUrl}/book/buy`, bookId, { headers: { 'x-authorization': getUser().accessToken } })
     }
 }

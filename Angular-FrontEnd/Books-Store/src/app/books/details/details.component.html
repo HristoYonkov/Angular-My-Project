@@ -8,7 +8,7 @@
         
         <div class="actions">
             <ng-container *ngIf="user">
-                <a *ngIf="oneBook?._ownerId._id !== user?._id" class="button" routerLink="a function in details">Buy</a>
+                <a *ngIf="oneBook?._ownerId._id !== user?._id" class="button" (click)="buyBook(oneBook?._id, user?._id)">Buy</a>
             </ng-container>
             
             <div class="likes">

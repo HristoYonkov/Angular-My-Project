@@ -30,7 +30,6 @@ bookController.post('/', async (req, res) => {
 });
 
 bookController.get('/my-books', async (req, res) => {
-    console.log(req.user);
     const books = await getByUserId(req.user._id)
     return res.status(200).json(books)
 })
@@ -56,7 +55,13 @@ bookController.put('/:id', async (req, res) => {
     }
 });
 
+bookController.put('/buy', async (req, res) => {
+    console.log(req);
+    console.log('HERE');
+})
+
 bookController.delete('/delete/:id', async (req, res) => {
+    console.log('Here');
     const item = await getById(req.params.id);
     console.log(item._ownerId._id);
     if (req.user._id != item._ownerId._id) {
