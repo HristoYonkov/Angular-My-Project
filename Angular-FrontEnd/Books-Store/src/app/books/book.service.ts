@@ -29,4 +29,8 @@ export class BookService {
     getMyBooks() {
         return this.http.get<IBook[]>(`${apiUrl}/book/my-books`)
     }
+
+    updateBook(book: {}, id: string) {
+    return this.http.put(`${apiUrl}/book/${id}`, book)
+    }
 }

@@ -6,11 +6,11 @@
             <p class="field">
                 <label for="title">Title</label>
                 <span class="input">
-                    <input ngModel #titleInput="ngModel" required="true" minlength="4" type="text" name="title"
-                        id="title" placeholder="Title" value={{oneBook?.title}}>
+                    <input [ngModel]="oneBook?.title" #titleInput="ngModel" required="true" minlength="4" type="text" name="title"
+                        id="title" placeholder="Title">
                 </span>
             </p>
-            <ng-container *ngIf="titleInput.touched">
+            <ng-container *ngIf="titleInput.touched || editForm.submitted">
                 <p *ngIf="titleInput.errors?.['required']" style="color: red;">Title is required!</p>
                 <p *ngIf="titleInput.errors?.['minlength']" style="color: red;">Title must be at least 4 characters!</p>
             </ng-container>
@@ -18,8 +18,8 @@
             <p class="field">
                 <label for="author">Author</label>
                 <span class="input">
-                    <input ngModel #authorInput="ngModel" minlength="2" required="true" type="text" name="author"
-                        id="author" placeholder="Author" value={{oneBook?.author}}>
+                    <input [ngModel]="oneBook?.author" #authorInput="ngModel" minlength="2" required="true" type="text" name="author"
+                        id="author" placeholder="Author">
                 </span>
             </p>
             <ng-container *ngIf="authorInput.touched">
@@ -31,7 +31,7 @@
             <p class="field">
                 <label for="description">Description</label>
                 <span class="input">
-                    <textarea ngModel #descriptionInput="ngModel" required="true" minlength="10" maxlength="100" name="description" id="description" placeholder="Description" value={{oneBook?.description}}></textarea>
+                    <textarea [ngModel]="oneBook?.description" #descriptionInput="ngModel" required="true" minlength="10" maxlength="100" name="description" id="description" placeholder="Description"></textarea>
                 </span>
             </p>
             <ng-container *ngIf="descriptionInput.touched">
@@ -42,7 +42,7 @@
             <p class="field">
                 <label for="image">Image</label>
                 <span class="input">
-                    <input value={{oneBook?.imageUrl}} ngModel #imageInput="ngModel" required="true" pattern="^https?://.+" type="text" name="imageUrl" id="image" placeholder="Image">
+                    <input [ngModel]="oneBook?.imageUrl" #imageInput="ngModel" required="true" pattern="^https?://.+" type="text" name="imageUrl" id="image" placeholder="Image">
                 </span>
             </p>
             <ng-container *ngIf="imageInput.touched">
@@ -53,7 +53,7 @@
             <p class="field">
                 <label for="genre">Genre</label>
                 <span class="input">
-                    <select value={{oneBook?.genre}} ngModel #genreInput="ngModel" required="true" id="type" name="genre">
+                    <select [ngModel]="oneBook?.genre" #genreInput="ngModel" required="true" id="type" name="genre">
                         <option value="Fantasy">Fantasy</option>
                         <option value="Romance">Romance</option>
                         <option value="Mistery">Mistery</option>
@@ -66,8 +66,8 @@
             <p class="field">
                 <label for="price">Price</label>
                 <span class="input">
-                    <input ngModel #priceInput="ngModel" required="true" min='5' type="number" name="price" id="price"
-                        placeholder="$" value={{oneBook?.price}}>
+                    <input [ngModel]="oneBook?.price" #priceInput="ngModel" required="true" min='5' type="number" name="price" id="price"
+                        placeholder="$">
                 </span>
                 <ng-container *ngIf="priceInput.touched">
                     <p *ngIf="priceInput.errors?.['required']" style="color: red;">Price is required!</p>
