@@ -8,7 +8,7 @@
                     <input #emailInput="ngModel" required="true" type="text" name="email" id="email" placeholder="Email" ngModel>
                 </span>
             </p>
-            <ng-container *ngIf="emailInput.touched">
+            <ng-container *ngIf="emailInput.touched ||loginForm.submitted">
                 <p *ngIf="emailInput.errors?.['required']" style="color: red;">Email required!</p>
             </ng-container>
             <p class="field">
@@ -17,12 +17,12 @@
                     <input #passInput="ngModel" required="true" minlength="5" type="password" name="password" id="password" placeholder="Password" ngModel>
                 </span>
             </p>
-            <ng-container *ngIf="passInput.touched">
+            <ng-container *ngIf="passInput.touched || loginForm.submitted">
                 <p *ngIf="passInput.errors?.['minlength']" style="color: red;">Password Must be at least 5 characters!</p>
                 <p *ngIf="passInput.errors?.['required']" style="color: red;">Password required!</p>
             </ng-container>
 
-            <input [disabled]="loginForm.invalid" class="button submit" type="submit" value="Login">
+            <input class="button submit" type="submit" value="Login">
             <h4>If you don't have account <a style="color: tomato;" routerLink="/auth/register">Register!</a></h4>
         </fieldset>
     </form>

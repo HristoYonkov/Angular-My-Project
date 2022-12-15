@@ -24,8 +24,11 @@ export class RegisterComponent {
   })
 
   constructor(private fB: FormBuilder, private authService: AuthService, private router: Router) { }
-
+  
+  isSubmitted = false
+  
   registerHandler() {
+    this.isSubmitted =  true;
     if (this.form.invalid) { return; }
     const userData = {
       username: this.form.value.username,

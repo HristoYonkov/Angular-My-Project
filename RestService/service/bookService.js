@@ -34,8 +34,14 @@ async function deleteById(id) {
     return Book.findByIdAndDelete(id)
 };
 
-// async function getMyBooks(id) {
-//     return await Book.find({ _ownerId: id })
+async function buyBook(bookId, userId) {
+    const existing = await Book.findById(bookId);
+    existing.buyers.push(userId);
+    return existing.save()
+}
+
+// async function getBySearch(modelName, payMethod) {
+//     return await Model.find({ name: { $regex: modelName, $options: 'i' }, payMethod: { $regex: payMethod, $options: 'i' } }).lean();
 // }
 
 
@@ -46,5 +52,6 @@ module.exports = {
     update,
     deleteById,
     getByUserId,
+    buyBook
     // getMyBooks
 }

@@ -40,8 +40,10 @@ export class BookService {
     }
 
     buyBook(bookId: string, userId: string) {
-        console.log('BUY BOOK');
-        
-        return this.http.put(`${apiUrl}/book/buy`, bookId, { headers: { 'x-authorization': getUser().accessToken } })
+        return this.http.put(`${apiUrl}/book/buy`, {bookId, userId}, { headers: { 'x-authorization': getUser().accessToken } })
+    }
+
+    buyedBooks() {
+        return this.http.get<IBook[]>(`${apiUrl}/book/buyedBooks`, { headers: { 'x-authorization': getUser().accessToken } })
     }
 }

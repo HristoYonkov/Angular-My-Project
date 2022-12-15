@@ -18,11 +18,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = getUser()
-    this.bookService.loadBooks().subscribe({
+    this.bookService.buyedBooks().subscribe({
       next: (books) => {
         this.bookList = books
         if (this.bookList.length > 0) {
-          this.ifBooks = true;
+          this.ifBooks = true;  
         }
       },
       error: (err) => {

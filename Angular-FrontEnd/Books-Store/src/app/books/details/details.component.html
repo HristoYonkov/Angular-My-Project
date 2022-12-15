@@ -8,7 +8,7 @@
         
         <div class="actions">
             <ng-container *ngIf="user">
-                <a *ngIf="oneBook?._ownerId._id !== user?._id" class="button" (click)="buyBook(oneBook?._id, user?._id)">Buy</a>
+                <a *ngIf="oneBook?._ownerId._id !== user?._id && canBuy" class="button" (click)="buyBook(oneBook?._id, user?._id)">Buy</a>
             </ng-container>
             
             <div class="likes">
@@ -23,5 +23,6 @@
         <p>{{oneBook?.description}}</p>
         <h1 *ngIf="oneBook?._ownerId._id === user?._id" style="color: red;">This is your book!</h1>
         <h1 *ngIf="!user" style="color: red">Log in if you want this book!</h1>
+        <h1 *ngIf="!canBuy" style="color: red">You already bought this book!</h1>
     </div>
 </section>

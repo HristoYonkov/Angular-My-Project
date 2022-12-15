@@ -2,7 +2,7 @@ const bookController = require('express').Router();
 
 const { hasUser } = require('../middlewares/guards');
 /// todo HAS_USER - guards
-const { getAll, create, getById, update, deleteById, getByUserId } = require('../service/bookService');
+const { getAll, create, getById, update, deleteById, getByUserId, buyBook } = require('../service/bookService');
 // const { parseError } = require('../util/parser');
 //todo parseError
 //todo - populate bike with _ownerId
@@ -10,6 +10,18 @@ const { getAll, create, getById, update, deleteById, getByUserId } = require('..
 bookController.get('/', async (req, res) => {
     const books = await getAll();
     res.status(200).json(books)
+});
+
+bookController.get('/buyedBooks', async (req, res) => {
+    const books = await getAll();
+    const filtered = []
+    books.forEach((book)=>{
+        if (book.buyers.includes(req.user._id)) {
+            filtered.push(book)
+        }
+    })
+    
+    res.status(200).json(filtered)
 });
 
 bookController.post('/', async (req, res) => {
@@ -32,6 +44,24 @@ bookController.post('/', async (req, res) => {
 bookController.get('/my-books', async (req, res) => {
     const books = await getByUserId(req.user._id)
     return res.status(200).json(books)
+});
+
+bookController.put('/buy', async (req, res) => {
+
+    const book = await getById(req.body.bookId);
+    
+    if (req.user._id == book._ownerId._id || book.buyers.includes(req.user._id)) {
+        return res.status(403).json({ message: 'You cannot modify this record' })
+    }
+    try {
+        const result = await buyBook(req.body.bookId, req.user._id,);
+        res.status(200).json(result)
+    } catch (err) {
+        console.log(err);
+        // const message = parseError(err)
+        res.status(400).json({ error: err.message })
+    }
+
 })
 
 bookController.get('/:id', async (req, res) => {
@@ -41,7 +71,7 @@ bookController.get('/:id', async (req, res) => {
 
 bookController.put('/:id', async (req, res) => {
     const book = await getById(req.params.id);
-    
+
     if (req.user._id != book._ownerId._id) {
         return res.status(403).json({ message: 'You cannot modify this record' })
     }
@@ -55,13 +85,9 @@ bookController.put('/:id', async (req, res) => {
     }
 });
 
-bookController.put('/buy', async (req, res) => {
-    console.log(req);
-    console.log('HERE');
-})
 
 bookController.delete('/delete/:id', async (req, res) => {
-    console.log('Here');
+
     const item = await getById(req.params.id);
     console.log(item._ownerId._id);
     if (req.user._id != item._ownerId._id) {
