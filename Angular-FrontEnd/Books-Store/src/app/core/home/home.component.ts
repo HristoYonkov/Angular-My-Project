@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit {
     this.searchResult = <any>[];
     if (search !== '') {
       this.bookList?.forEach((book) => {
-        let title = book.title
-        if (title.startsWith(search)) {
+        let title = book.title.toLocaleLowerCase()
+        if (title.startsWith(search.toLocaleLowerCase())) {
           this.searchResult.push(book)
           // console.log(this.searchResult);
         }
