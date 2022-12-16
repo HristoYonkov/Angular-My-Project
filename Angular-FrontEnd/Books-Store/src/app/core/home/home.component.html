@@ -15,6 +15,16 @@
         </li>
         
     </ul>
+    <ul *ngIf="searchInput.value !== ''" class="other-books-list">
+        <li *ngFor="let book of searchResult" class="otherBooks">
+            <h3>{{book.title}}</h3>
+            <p>Type: {{book.genre}}</p>
+            <p class="img"><img src="{{book.imageUrl}}"></p>
+            <a class="button" routerLink="/book/details/{{book._id}}">Details</a>
+        </li>
+        
+    </ul>
     <!-- Display paragraph: If there are no books in the database -->
+    <p *ngIf="searchResult.length < 1" class="no-books">No books in database!</p>
     <p *ngIf="!ifBooks" class="no-books">No books in database!</p>
 </section>

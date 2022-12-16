@@ -10,6 +10,7 @@ import { IBook } from 'src/app/shared/interfaces/book';
 export class HomeComponent implements OnInit {
 
   bookList: IBook[] | null = [];
+  searchResult = <any>[];
 
   constructor(private bookService: BookService) { }
 
@@ -30,19 +31,16 @@ export class HomeComponent implements OnInit {
   }
 
   searchHandler(search: string) {
-    console.log(typeof search);
-    let searchResult = <any>[];
+    this.searchResult = <any>[];
     if (search !== '') {
       this.bookList?.forEach((book) => {
         let title = book.title
         if (title.startsWith(search)) {
-          console.log(title);
+          this.searchResult.push(book)
+          // console.log(this.searchResult);
         }
       })
       // console.log(this.bookList);
-      
-    } else {
-
     }
   }
 
