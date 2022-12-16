@@ -29,4 +29,21 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  searchHandler(search: string) {
+    console.log(typeof search);
+    let searchResult = <any>[];
+    if (search !== '') {
+      this.bookList?.forEach((book) => {
+        let title = book.title
+        if (title.startsWith(search)) {
+          console.log(title);
+        }
+      })
+      // console.log(this.bookList);
+      
+    } else {
+
+    }
+  }
+
 }

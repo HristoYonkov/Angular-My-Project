@@ -12,27 +12,27 @@ const apiUrl = environment.apiUrl;
 })
 
 export class BookService {
-    constructor(private http: HttpClient, private authService: AuthService) {}
+    constructor(private http: HttpClient, private authService: AuthService) { }
 
-    
+
     createBook(formData: object) {
         return this.http.post(apiUrl + '/book', formData, { headers: { 'x-authorization': getUser().accessToken } })
     }
-    
+
     loadBooks() {
         return this.http.get<IBook[]>(`${apiUrl}/book`)
     }
-    
+
     getBook(bookId: string) {
         return this.http.get<IBook>(`${apiUrl}/book/${bookId}`)
     }
-    
+
     getMyBooks() {
-        return this.http.get<IBook[]>(`${apiUrl}/book/my-books`,  { headers: { 'x-authorization': getUser().accessToken } })
+        return this.http.get<IBook[]>(`${apiUrl}/book/my-books`, { headers: { 'x-authorization': getUser().accessToken } })
     }
 
     updateBook(book: {}, id: string) {
-    return this.http.put(`${apiUrl}/book/${id}`, book, { headers: { 'x-authorization': getUser().accessToken } })
+        return this.http.put(`${apiUrl}/book/${id}`, book, { headers: { 'x-authorization': getUser().accessToken } })
     }
 
     deleteBook(id: string) {
@@ -40,10 +40,14 @@ export class BookService {
     }
 
     buyBook(bookId: string, userId: string) {
-        return this.http.put(`${apiUrl}/book/buy`, {bookId, userId}, { headers: { 'x-authorization': getUser().accessToken } })
+        return this.http.put(`${apiUrl}/book/buy`, { bookId, userId }, { headers: { 'x-authorization': getUser().accessToken } })
     }
 
     buyedBooks() {
         return this.http.get<IBook[]>(`${apiUrl}/book/buyedBooks`, { headers: { 'x-authorization': getUser().accessToken } })
     }
+
+    // searchBooks(title: string) {
+    //     return this.http.get<IBook[]>(`${apiUrl}/book/search`, { title })
+    // }
 }

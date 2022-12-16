@@ -40,9 +40,9 @@ async function buyBook(bookId, userId) {
     return existing.save()
 }
 
-// async function getBySearch(modelName, payMethod) {
-//     return await Model.find({ name: { $regex: modelName, $options: 'i' }, payMethod: { $regex: payMethod, $options: 'i' } }).lean();
-// }
+async function getBySearch(title) {
+    return await Model.find({ title: { $regex: title, $options: 'i' } }).lean();
+}
 
 
 module.exports = {
@@ -52,6 +52,7 @@ module.exports = {
     update,
     deleteById,
     getByUserId,
-    buyBook
+    buyBook,
+    getBySearch
     // getMyBooks
 }
