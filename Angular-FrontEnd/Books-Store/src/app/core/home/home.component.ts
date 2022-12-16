@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
       }
     })
   }
-
+  
   searchHandler(search: string) {
     this.searchResult = <any>[];
     if (search !== '') {

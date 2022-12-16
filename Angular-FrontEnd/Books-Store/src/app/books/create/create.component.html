@@ -19,7 +19,7 @@
                 <label for="author">Author</label>
                 <span class="input">
                     <input ngModel #authorInput="ngModel" minlength="2" required="true" type="text" name="author"
-                        id="author" placeholder="Author">
+                        id="title" placeholder="Author">
                 </span>
             </p>
             <ng-container *ngIf="authorInput.touched || createForm.submitted">

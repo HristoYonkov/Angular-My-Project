@@ -16,18 +16,21 @@ export class MyBooksComponent implements OnInit {
   ifBooks: boolean = false;
 
   ngOnInit(): void {
-    
-    this.bookService.getMyBooks().subscribe({
-      next: (books) => {
-        this.bookList = books
-        if (this.bookList.length > 0) {
-          this.ifBooks = true;
+    setTimeout(()=> {
+      
+      this.bookService.getMyBooks().subscribe({
+        next: (books) => {
+          this.bookList = books
+          if (this.bookList.length > 0) {
+            this.ifBooks = true;
+          }
+        },
+        error: (err) => {
+          console.log(err);
         }
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+      })
+      
+    }, 300);
     
   }
   

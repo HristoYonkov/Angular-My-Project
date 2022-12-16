@@ -25,6 +25,6 @@
         
     </ul>
     <!-- Display paragraph: If there are no books in the database -->
-    <p *ngIf="searchResult.length < 1" class="no-books">No books in database!</p>
+    <p *ngIf="searchInput.value !== '' && searchResult.length < 1" class="no-books">No found books!</p>
     <p *ngIf="!ifBooks" class="no-books">No books in database!</p>
 </section>
