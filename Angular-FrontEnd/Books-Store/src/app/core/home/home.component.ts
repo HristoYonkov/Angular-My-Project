@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { BookService } from 'src/app/books/book.service';
 import { IBook } from 'src/app/shared/interfaces/book';
 
@@ -11,8 +13,13 @@ export class HomeComponent implements OnInit {
 
   bookList: IBook[] | null = [];
   searchResult = <any>[];
+  searchType: string = 'Title';
 
-  constructor(private bookService: BookService) { }
+  constructor(
+    private bookService: BookService,
+    private authService: AuthService,
+    private router: Router,
+    ) { }
 
   ifBooks: boolean = false;
 
@@ -26,8 +33,18 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.authService.errorMessage = 'Pavkata e GIOLQM'
+        this.router.navigate(['error'])
       }
     })
+  }
+
+  typeHandler() {
+    if (this.searchType === 'Title') {
+      this.searchType = 'Genre';
+    } else {
+      this.searchType = 'Title'
+    }
   }
   
   searchHandler(search: string) {
@@ -35,12 +52,19 @@ export class HomeComponent implements OnInit {
     if (search !== '') {
       this.bookList?.forEach((book) => {
         let title = book.title.toLocaleLowerCase()
-        if (title.startsWith(search.toLocaleLowerCase())) {
-          this.searchResult.push(book)
-          // console.log(this.searchResult);
+        let genre = book.genre.toLocaleLowerCase()
+        if (this.searchType === 'Genre') {
+          if (genre.startsWith(search.toLocaleLowerCase())) {
+            this.searchResult.push(book)
+          }
+
+        } else {
+          if (title.startsWith(search.toLocaleLowerCase())) {
+            this.searchResult.push(book)
+          }
         }
       })
-      // console.log(this.bookList);
+      
     }
   }
 

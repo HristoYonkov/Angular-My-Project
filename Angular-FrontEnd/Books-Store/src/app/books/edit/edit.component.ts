@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { IBook } from 'src/app/shared/interfaces/book';
 import { BookService } from '../book.service';
 
@@ -16,16 +17,16 @@ export class EditComponent implements OnInit {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private bookService: BookService) { }
+    private bookService: BookService,
+    private authservice: AuthService
+    ) { }
 
   ngOnInit(): void {
     const bookId = this.activatedRoute.snapshot.params['id'];
     this.bookId = bookId;
 
     this.bookService.getBook(bookId).subscribe({
-      next: (book) => {
-        console.log(book);
-        
+      next: (book) => { 
         this.oneBook = book
       },
       error: (err) => {
@@ -43,20 +44,19 @@ export class EditComponent implements OnInit {
       genre: form.value.genre,
       price: form.value.price,
     }
-    console.log(form.value);
     
 
     if (form.invalid) { return; }
 
     this.bookService.updateBook(formData, this.bookId).subscribe({
       next: (book) => {
-        console.log(book);
         if (!book) { return }
         this.router.navigate(['/auth/my-books'])
-        
       },
       error: (err) => {
-        console.log(err);
+        console.log(err.error.message);
+        this.authservice.errorMessage = err.error.message;
+        this.router.navigate(['error'])
       }
     })
 

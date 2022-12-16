@@ -210,7 +210,7 @@ textarea#description {
 }
 
 .details > .book-information > .img {
-    width: 60%;
+    width: 200%;
     align-items: center;
 }
 .details > .book-information > .button {

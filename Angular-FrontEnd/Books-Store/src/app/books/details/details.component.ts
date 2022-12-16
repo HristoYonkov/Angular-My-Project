@@ -33,12 +33,14 @@ export class DetailsComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.authService.errorMessage = 'Pavkata e maluk'
+        this.router.navigate(['error'])
       }
     })
   }
 
   buyBook(bookId: string, userId: string) {
-    console.log(bookId, userId);
+   
     this.bookService.buyBook(bookId, userId).subscribe({
       next: (book) => { },
       error: (err) => {

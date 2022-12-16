@@ -1,11 +1,11 @@
-<!-- Dashboard Page ( for Guests and Users ) -->
+<div id="search">
+    <input ngModel #searchInput="ngModel" id="searchBox" type="text">
+    <button (click)="searchHandler(searchInput.value)">Search</button>
+    <button class="searchType" *ngIf="searchType === 'Title'" (click)="typeHandler()">Title</button>
+    <button class="searchType" *ngIf="searchType !== 'Title'" (click)="typeHandler()">Genre</button>
+</div>
 <section id="dashboard-page" class="dashboard">
     <h1>STORE</h1>
-    <!-- Display ul: with list-items for All books (If any) -->
-    <div id="search">
-        <input ngModel #searchInput="ngModel" id="searchBox" type="text">
-        <button (click)="searchHandler(searchInput.value)">Search</button>
-    </div>
     <ul *ngIf="ifBooks && searchInput.value === ''" class="other-books-list">
         <li *ngFor="let book of bookList" class="otherBooks">
             <h3>{{book.title}}</h3>

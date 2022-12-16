@@ -5,7 +5,7 @@ const { mongoose } = require('mongoose');
 const session = require('./middlewares/session');
 const router = require('./routes');
 
-const connectionString = 'mongodb+srv://Swiftpaw:Nikoga90.@cluster0.qhvpfqf.mongodb.net/Book-Store';
+const connectionString = 'mongodb+srv://Swiftpaw:1234567890@cluster0.qhvpfqf.mongodb.net/Book-Store';
 
 const initDB = () => mongoose.connect(connectionString)
 

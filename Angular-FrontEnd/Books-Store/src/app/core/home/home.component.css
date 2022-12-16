@@ -1,0 +1,25 @@
+#search {
+    position: absolute;
+    top: 2%;
+    left: 15%;
+    
+}
+
+#search .searchType {
+    position: absolute;
+    height: 30px;
+    left: 123%;
+    background-color: rgb(255, 196, 0);
+    cursor: pointer;
+}
+
+#search input {
+    font-size: 20px;
+}
+
+#search button {
+    position: absolute;
+    height: 30px;
+    background-color: rgb(238, 238, 8);
+    cursor: pointer;
+}
