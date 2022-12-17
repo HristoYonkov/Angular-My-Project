@@ -16,10 +16,10 @@ export class LoginComponent {
   //   {static: true}
   // ) form!: ElementRef<HTMLInputElement>
 
-  constructor(private router: Router, private authService: AuthService) {
-    
-  }
-  
+  constructor(private router: Router, private authService: AuthService) { }
+
+  serverError: boolean = false;
+
   loginHandler(form: NgForm) {
     if (form.invalid) { return; }
     const userData = {
@@ -27,9 +27,15 @@ export class LoginComponent {
       password: form.value.password,
     }
 
-    this.authService.login(userData).subscribe((user) => {
-      setUser(user)
-      this.router.navigate(['/']);
+    this.authService.login(userData).subscribe({
+      next: (user) => {
+        setUser(user)
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        console.log(err);
+        this.serverError = true;
+      }
     })
 
     // this.router.navigate(['/']);

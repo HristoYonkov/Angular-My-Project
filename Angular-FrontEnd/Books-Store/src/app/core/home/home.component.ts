@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.bookService.loadBooks().subscribe({
       next: (books) => {
+        console.log(books);
+        
         this.bookList = books
         if (this.bookList.length > 0) {
           this.ifBooks = true;
@@ -33,7 +35,7 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        this.authService.errorMessage = 'Pavkata e GIOLQM'
+        this.authService.errorMessage = 'Server is crashed!'
         this.router.navigate(['error'])
       }
     })

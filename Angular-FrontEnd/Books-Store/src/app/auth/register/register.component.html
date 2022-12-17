@@ -49,5 +49,7 @@
             <input class="button submit" type="submit" value="Register">
             <h4>If you have an account <a style="color: tomato;" routerLink="/auth/login">Log-In!</a></h4>
         </fieldset>
+        <h1 style="color: rgb(166, 35, 35);" *ngIf="serverError">Existing username or email!</h1>
+
     </form>
 </section>

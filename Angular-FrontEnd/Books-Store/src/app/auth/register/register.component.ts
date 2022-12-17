@@ -25,6 +25,7 @@ export class RegisterComponent {
 
   constructor(private fB: FormBuilder, private authService: AuthService, private router: Router) { }
   
+  serverError: boolean = false;
   isSubmitted = false
   
   registerHandler() {
@@ -36,10 +37,16 @@ export class RegisterComponent {
       password:this.form.value.pass?.password,
       repass: this.form.value.pass?.repass
     }
-    this.authService.register(userData).subscribe((user) => {
-      setUser(user)
-      this.router.navigate(['/'])
-    })
+    this.authService.register(userData).subscribe({
+      next: (user) => {
+        setUser(user)
+        this.router.navigate(['/'])
+      },
+      error: (err) => {
+        console.log(err);
+        this.serverError = true;
+      }
+      })
   }
 
 }

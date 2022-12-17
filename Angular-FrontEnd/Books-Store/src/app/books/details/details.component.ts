@@ -33,7 +33,7 @@ export class DetailsComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        this.authService.errorMessage = 'Pavkata e maluk'
+        this.authService.errorMessage = 'Cant find the book!'
         this.router.navigate(['error'])
       }
     })

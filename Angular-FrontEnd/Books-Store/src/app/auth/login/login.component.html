@@ -25,5 +25,6 @@
             <input class="button submit" type="submit" value="Login">
             <h4>If you don't have account <a style="color: tomato;" routerLink="/auth/register">Register!</a></h4>
         </fieldset>
+        <h1 style="color: rgb(166, 35, 35);" *ngIf="serverError">Wrong email or password!</h1>
     </form>
 </section>

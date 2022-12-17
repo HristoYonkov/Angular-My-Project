@@ -1,5 +1,5 @@
 <div id="search">
-    <input ngModel #searchInput="ngModel" id="searchBox" type="text">
+    <input ngModel placeholder="Find Book" #searchInput="ngModel" id="searchBox" type="text">
     <button (click)="searchHandler(searchInput.value)">Search</button>
     <button class="searchType" *ngIf="searchType === 'Title'" (click)="typeHandler()">Title</button>
     <button class="searchType" *ngIf="searchType !== 'Title'" (click)="typeHandler()">Genre</button>
@@ -9,7 +9,7 @@
     <ul *ngIf="ifBooks && searchInput.value === ''" class="other-books-list">
         <li *ngFor="let book of bookList" class="otherBooks">
             <h3>{{book.title}}</h3>
-            <p>Type: {{book.genre}}</p>
+            <p>Genre: {{book.genre}}</p>
             <p class="img"><img src="{{book.imageUrl}}"></p>
             <a class="button" routerLink="/book/details/{{book._id}}">Details</a>
         </li>
@@ -18,7 +18,7 @@
     <ul *ngIf="searchInput.value !== ''" class="other-books-list">
         <li *ngFor="let book of searchResult" class="otherBooks">
             <h3>{{book.title}}</h3>
-            <p>Type: {{book.genre}}</p>
+            <p>Genre: {{book.genre}}</p>
             <p class="img"><img src="{{book.imageUrl}}"></p>
             <a class="button" routerLink="/book/details/{{book._id}}">Details</a>
         </li>

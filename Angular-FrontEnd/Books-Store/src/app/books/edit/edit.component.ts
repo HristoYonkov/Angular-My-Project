@@ -50,12 +50,12 @@ export class EditComponent implements OnInit {
 
     this.bookService.updateBook(formData, this.bookId).subscribe({
       next: (book) => {
-        if (!book) { return }
+        // if (!book) { return }
         this.router.navigate(['/auth/my-books'])
       },
       error: (err) => {
         console.log(err.error.message);
-        this.authservice.errorMessage = err.error.message;
+        this.authservice.errorMessage = 'Cant find the book!';
         this.router.navigate(['error'])
       }
     })
