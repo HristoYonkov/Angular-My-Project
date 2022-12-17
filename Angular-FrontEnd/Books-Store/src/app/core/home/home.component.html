@@ -6,6 +6,8 @@
 </div>
 <section id="dashboard-page" class="dashboard">
     <h1>STORE</h1>
+    <hr>
+    
     <ul *ngIf="ifBooks && searchInput.value === ''" class="other-books-list">
         <li *ngFor="let book of bookList" class="otherBooks">
             <h3>{{book.title}}</h3>

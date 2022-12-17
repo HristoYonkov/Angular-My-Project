@@ -6,9 +6,11 @@ import { IBook } from 'src/app/shared/interfaces/book';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
+
 export class ProfileComponent implements OnInit {
+
   bookList: IBook[] | null = [];
 
   constructor(private bookService: BookService) { }

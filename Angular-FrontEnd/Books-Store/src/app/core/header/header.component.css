@@ -103,3 +103,27 @@ nav.navbar ul li:hover>a {
 .navbar-anonymous ul {
     display: flex;
 }
+
+#proslovutiqDiv {
+    position: absolute;
+    top: 3%;
+    left: 9.5%;
+    width: 100px;
+}
+#button {
+    position: absolute;
+    left: 10%;
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    background: lightcoral;
+    color: rgb(255, 255, 255);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+    margin: 5px;
+}

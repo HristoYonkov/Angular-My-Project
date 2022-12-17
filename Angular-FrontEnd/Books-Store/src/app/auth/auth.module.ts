@@ -7,6 +7,7 @@ import { MyBooksComponent } from './my-books/my-books.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { LogoutComponent } from './logout/logout.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LogoutComponent } from './logout/logout.component';
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ]
 })
 export class AuthModule { }

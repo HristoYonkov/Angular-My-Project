@@ -1,22 +1,27 @@
 <header id="site-header">
-    <!-- Navigation -->
-    <nav class="navbar">
-      <section class="navbar-dashboard">
-        <a routerLink="/">Book Store</a>
-        <!-- Guest users -->
-        <div *ngIf="!isLoggedIn" id="guest">
-          <a class="button" routerLink="/auth/login">Login</a>
-          <a class="button" routerLink="/auth/register">Register</a>
-        </div>
-        <span *ngIf="!isLoggedIn">Welcome, Guest</span> 
-        <!-- Logged-in users -->
-        <div *ngIf="isLoggedIn" id="user">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <section class="navbar-dashboard">
+      <a routerLink="/">Book Store</a>
+
+      <div id="proslovutiqDiv" [@popOverState]="stateName">
+        <a href="https://github.com/HristoYonkov" target="_blank"><img src="../../../assets/github-2-5645861-4695719.webp"></a>
+      </div>
+      <button id="button" (click)="toggle()">Github</button>
+      <!-- Guest users -->
+      <div *ngIf="!isLoggedIn" id="guest">
+        <a class="button" routerLink="/auth/login">Login</a>
+        <a class="button" routerLink="/auth/register">Register</a>
+      </div>
+      <span *ngIf="!isLoggedIn">Welcome, Guest</span>
+      <!-- Logged-in users -->
+      <div *ngIf="isLoggedIn" id="user">
         <span>Welcome, {{user?.username}}</span>
-          <a class="button" routerLink="/auth/profile">Profile</a>
-          <a class="button" routerLink="/auth/my-books">My Books</a>
-          <a class="button" routerLink="/book/create">Add Book</a>
-          <a class="button" routerLink="/auth/logout">Logout</a>
-        </div>
-      </section>
-    </nav>
-  </header>
+        <a class="button" routerLink="/auth/profile">Profile</a>
+        <a class="button" routerLink="/auth/my-books">My Books</a>
+        <a class="button" routerLink="/book/create">Add Book</a>
+        <a class="button" routerLink="/auth/logout">Logout</a>
+      </div>
+    </section>
+  </nav>
+</header>

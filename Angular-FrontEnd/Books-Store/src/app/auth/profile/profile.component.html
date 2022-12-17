@@ -4,10 +4,11 @@
     <p class="title">Student</p>
     <p>@: <a href="https://softuni.bg/"><i class="fa fa-facebook" aria-hidden="true"></i>Software University - Softuni</a></p>
     <p><a id="button" href="https://www.facebook.com/hristopturs">Contact</a></p>
-    <!-- <p><a id="button">Edit User</a></p> -->
 </div>
+
 <section id="dashboard-page" class="dashboard">
     <h1>Bought Books</h1>
+    <hr>
     <!-- Display ul: with list-items for All books (If any) -->
     <ul *ngIf="ifBooks" class="other-books-list">
         <li *ngFor="let book of bookList" class="otherBooks">
