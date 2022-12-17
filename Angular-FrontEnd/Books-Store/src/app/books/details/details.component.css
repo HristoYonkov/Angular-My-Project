@@ -1,4 +1,4 @@
-body {
+/* body {
 	background: #FFF;
 	padding: 1rem;
 }
@@ -142,4 +142,15 @@ form textarea:focus {
 
 .field .input:hover {
 	background: #c4c1c1;
+} */
+
+#action-details {
+	position: absolute;
+    top: 15%;
+    left: 20%;
+}
+#static-details {
+	position: absolute;
+    top: 15%;
+    left: 40%;
 }

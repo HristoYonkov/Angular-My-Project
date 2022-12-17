@@ -1,23 +1,22 @@
 <!-- Details Page ( for Guests and Users ) -->
-<section id="details-page" class="details">
+<section>
     
-    <div class="book-information">
-        <h3>{{oneBook?.title}}</h3>
-        <p class="type">Genre: {{oneBook?.genre}}</p>
+    <div id="action-details">
         <p class="img"><img src={{oneBook?.imageUrl}}></p>
-        
-        <div class="actions">
+        <div>
             <ng-container *ngIf="user">
-                <a *ngIf="oneBook?._ownerId._id !== user?._id && canBuy" class="button" (click)="buyBook(oneBook?._id, user?._id)">Buy</a>
+                <a class="button" *ngIf="oneBook?._ownerId._id !== user?._id && canBuy" (click)="buyBook(oneBook?._id, user?._id)">Buy</a>
+                <span> Price-$: {{oneBook?.price}}</span>
             </ng-container>
-            <div class="likes">
-                <span id="total-likes">Price-$: {{oneBook?.price}}</span>
+            <div>
             </div> 
         </div>
     </div>
-    <h3 class="type">Author: {{oneBook?.author}}</h3>
     
-    <div class="book-description">
+    <div id="static-details">
+        <h1> Title: {{oneBook?.title}}</h1>
+        <h3>Author: {{oneBook?.author}}</h3>
+        <h3 class="type">Genre: {{oneBook?.genre}}</h3>
         <h3>Description:</h3>
         <p>{{oneBook?.description}}</p>
         <h1 *ngIf="oneBook?._ownerId._id === user?._id" style="color: red;">This is your book!</h1>
