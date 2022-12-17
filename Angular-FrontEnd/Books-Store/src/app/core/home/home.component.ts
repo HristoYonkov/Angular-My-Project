@@ -24,21 +24,25 @@ export class HomeComponent implements OnInit {
   ifBooks: boolean = false;
 
   ngOnInit(): void {
-    this.bookService.loadBooks().subscribe({
-      next: (books) => {
-        console.log(books);
-        
-        this.bookList = books
-        if (this.bookList.length > 0) {
-          this.ifBooks = true;
+    setTimeout(() => {
+
+      this.bookService.loadBooks().subscribe({
+        next: (books) => {
+          console.log(books);
+          
+          this.bookList = books
+          if (this.bookList.length > 0) {
+            this.ifBooks = true;
+          }
+        },
+        error: (err) => {
+          console.log(err);
+          this.authService.errorMessage = 'Server is crashed!'
+          this.router.navigate(['error'])
         }
-      },
-      error: (err) => {
-        console.log(err);
-        this.authService.errorMessage = 'Server is crashed!'
-        this.router.navigate(['error'])
-      }
-    })
+      })
+
+    }, 300) 
   }
 
   typeHandler() {

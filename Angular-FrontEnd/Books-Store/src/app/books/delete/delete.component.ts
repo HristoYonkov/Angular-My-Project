@@ -27,6 +27,7 @@ export class DeleteComponent implements OnInit {
         this.router.navigate(['error'])
       }
     })
+    this.router.navigate(['/'])
   }
 
 }
