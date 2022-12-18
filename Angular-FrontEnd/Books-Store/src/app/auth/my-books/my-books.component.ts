@@ -15,7 +15,7 @@ export class MyBooksComponent implements OnInit {
 
   ifBooks: boolean = false;
 
-  ngOnInit(): void {
+  ngOnInit(): void { // Lifecycle hook, 
     setTimeout(()=> {
       
       this.bookService.getMyBooks().subscribe({
