@@ -6,8 +6,8 @@ const { login, register } = require('../service/userService');
 authController.post('/register', async (req, res) => {
     try {
         const token = await register(req.body.email, req.body.username, req.body.password)
+        console.log(token);
         res.status(201).json(token)
-        //TODOnot sure
         res.end()
     } catch (error) {
         console.log(error);
@@ -19,8 +19,8 @@ authController.post('/register', async (req, res) => {
 authController.post('/login', async (req, res) => {
     try {
         const token = await login(req.body.email, req.body.password)
+        console.log(token);
         res.status(200).json(token)
-        //TODOnot sure
         res.end()
     } catch (error) {
         console.log(error);

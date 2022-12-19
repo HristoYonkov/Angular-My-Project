@@ -44,7 +44,7 @@
                     </span>
                 </p>
                 <p *ngIf="form.value.pass?.password !== form.value.pass?.repass
-                && form.get('pass')?.get('repass')?.touched || isSubmitted" style="color: red;">Passwords must match!</p>
+                && form.get('pass')?.get('repass')?.touched" style="color: red;">Passwords must match!</p>
             </ng-container>
             <input class="button submit" type="submit" value="Register">
             <h4>If you have an account <a style="color: tomato;" routerLink="/auth/login">Log-In!</a></h4>

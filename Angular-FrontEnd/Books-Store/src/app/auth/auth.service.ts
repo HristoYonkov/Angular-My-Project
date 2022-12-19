@@ -22,9 +22,10 @@ export class AuthService {
       this.user = userData
     }))
   }
-
+  
   login(userData: {}) {
     return this.http.post<IUser>(apiUrl + '/auth/login', userData).pipe(tap((userData) => {
+      console.log('hgdvdvgf', userData);
       this.user = userData
       localStorage.setItem('token', this.user.accessToken)
     }))

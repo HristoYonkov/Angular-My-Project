@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
 
       this.bookService.loadBooks().subscribe({
         next: (books) => {
-          console.log(books);
           
           this.bookList = books
           if (this.bookList.length > 0) {
