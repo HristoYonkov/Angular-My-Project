@@ -12,6 +12,6 @@ Every logged in user can buy books form the store if he is not the creator and a
 ## Setup
 
 To run Front End: - In directory "Book-Store", open inside cmd and run:
-npm install, npm start Which opens the app at http://localhost:4200 in your browser. 
+npm install and wait for node modules to build up. After that, ng serve -o, which opens the app at http://localhost:4200 in your browser. 
 
-To run Rest Service: - Open RestService folder for server, open inside cmd and run: npm install, npm start And the server will start listening on port 3000.
+To run Rest Service: - Open RestService folder for server, open inside cmd and run: npm installand wait for node modules to build up. After thet, npm start and the server will start listening on port 3000.
