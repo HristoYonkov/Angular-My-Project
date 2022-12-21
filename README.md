@@ -9,7 +9,7 @@ A SPA app for Softuni Angular-exam!
 The app is like sale store with basic functionality. Every user(not logged in) have access to -> Home (Book Store) a catalog with books and search function for books searched by title and genre. Also, Details, Register and Login. Evry logged in user have acces to -> Book Store, My Books(if has created books), from there the user can edit and delete his own created books, also can add books, enters in profile page and option for logout.
 Every logged in user can buy books form the store if he is not the creator and already did not bought the book. The buyed books are going in profile page under the buyed books (if any), from there the user can enter into the details also!
 
-TechStack:
+## TechStack:
 
 Client Angular: CLI: 14.2.8; TypeScript: ~4.7.2;
 
