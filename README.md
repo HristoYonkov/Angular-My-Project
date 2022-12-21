@@ -19,7 +19,9 @@ Server: Node: >=14.0.0; ExpressJS: ^4.18.2; bcrypt: ^5.1.0; jsonwebtoken: ^8.5.1
 
 To run Front End: - In directory "Book-Store", open inside cmd and 
 run:
+
 $ npm install,
+
 $ npm start 
 
 - Which opens the app at http://localhost:4200 in your browser. 
