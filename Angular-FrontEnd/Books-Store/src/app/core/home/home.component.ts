@@ -11,7 +11,7 @@ import { IBook } from 'src/app/shared/interfaces/book';
 })
 export class HomeComponent implements OnInit {
 
-  bookList: IBook[] | null = [];
+  bookList: IBook[] = [];
   searchResult = <any>[];
   searchType: string = 'Title';
 
@@ -21,18 +21,13 @@ export class HomeComponent implements OnInit {
     private router: Router,
     ) { }
 
-  ifBooks: boolean = false;
-
   ngOnInit(): void {
     setTimeout(() => {
 
       this.bookService.loadBooks().subscribe({
         next: (books) => {
-          
           this.bookList = books
-          if (this.bookList.length > 0) {
-            this.ifBooks = true;
-          }
+          this.searchResult = books
         },
         error: (err) => {
           console.log(err);
@@ -53,23 +48,27 @@ export class HomeComponent implements OnInit {
   }
   
   searchHandler(search: string) {
-    this.searchResult = <any>[];
+    this.bookList = [];
+    
     if (search !== '') {
-      this.bookList?.forEach((book) => {
-        let title = book.title.toLocaleLowerCase()
-        let genre = book.genre.toLocaleLowerCase()
+      this.searchResult?.forEach((book: any) => {
+        let title = book.title.toLowerCase()
+        let genre = book.genre.toLowerCase()
+        
         if (this.searchType === 'Genre') {
-          if (genre.startsWith(search.toLocaleLowerCase())) {
-            this.searchResult.push(book)
+          if (genre.startsWith(search.toLowerCase())) {
+            this.bookList.push(book)
           }
-
+          
         } else {
-          if (title.startsWith(search.toLocaleLowerCase())) {
-            this.searchResult.push(book)
+          if (title.startsWith(search.toLowerCase())) {
+            this.bookList.push(book)
           }
         }
       })
       
+    } else {
+      this.bookList = this.searchResult;
     }
   }
 

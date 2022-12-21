@@ -8,7 +8,7 @@
     <h1>STORE</h1>
     <hr>
     
-    <ul *ngIf="ifBooks && searchInput.value === ''" class="other-books-list">
+    <ul *ngIf="bookList.length > 0" class="other-books-list">
         <li *ngFor="let book of bookList" class="otherBooks">
             <h3>{{book.title}}</h3>
             <p>Genre: {{book.genre}}</p>
@@ -17,7 +17,7 @@
         </li>
         
     </ul>
-    <ul *ngIf="searchInput.value !== ''" class="other-books-list">
+    <!-- <ul *ngIf="searchResult.length > 0" class="other-books-list">
         <li *ngFor="let book of searchResult" class="otherBooks">
             <h3>{{book.title}}</h3>
             <p>Genre: {{book.genre}}</p>
@@ -25,8 +25,8 @@
             <a class="button" routerLink="/book/details/{{book._id}}">Details</a>
         </li>
         
-    </ul>
+    </ul> -->
     <!-- Display paragraph: If there are no books in the database -->
-    <p *ngIf="searchInput.value !== '' && searchResult.length < 1" class="no-books">No found books!</p>
-    <p *ngIf="!ifBooks" class="no-books">No books in database!</p>
+    <p *ngIf="searchInput.value !== '' && bookList.length === 0" class="no-books">No found books!</p>
+    <p *ngIf="!searchInput.touched && bookList.length === 0" class="no-books">No books in database!</p>
 </section>
