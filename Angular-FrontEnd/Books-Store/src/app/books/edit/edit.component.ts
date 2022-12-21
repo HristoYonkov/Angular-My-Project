@@ -45,9 +45,8 @@ export class EditComponent implements OnInit {
       price: form.value.price,
     }
     
-
     if (form.invalid) { return; }
-
+    
     this.bookService.updateBook(formData, this.bookId).subscribe({
       next: (book) => {
         // if (!book) { return }
