@@ -31,3 +31,8 @@ After that use 'commented connection string', cause for cloud database you need 
 
 $ npm start
 And the server will start listening on port 3000.
+=======
+To run Front End: - In directory "Book-Store", open inside cmd and run:
+npm install and wait for node modules to build up. After that, ng serve -o, which opens the app at http://localhost:4200 in your browser. 
+
+To run Rest Service: - Open RestService folder for server, open inside cmd and run: npm installand wait for node modules to build up. After thet, npm start and the server will start listening on port 3000.

@@ -7,7 +7,7 @@
             <ng-container *ngIf="user">
                 <a class="button" *ngIf="oneBook?._ownerId._id !== user?._id && canBuy" (click)="buyBook(oneBook?._id, user?._id)">Buy</a>
             </ng-container>
-            <span> Price: $ {{oneBook?.price}}</span>
+            <span> Price: {{oneBook?.price}}$</span>
             <div>
             </div> 
         </div>
