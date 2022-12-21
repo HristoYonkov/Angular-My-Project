@@ -27,7 +27,8 @@ $ npm start
 - Which opens the app at http://localhost:4200 in your browser. 
 
 To run Rest Service: - Open RestService folder for server, open inside cmd and
-run: 
+run:
+
 $ npm install,
 
 After that use 'commented connection string', cause for cloud database you need authentication!
