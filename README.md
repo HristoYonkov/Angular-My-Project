@@ -11,7 +11,7 @@ Every logged in user can buy books form the store if he is not the creator and a
 
 TechStack:
 Client Angular: CLI: 14.2.8; TypeScript: ~4.7.2;
----
+
 Server: Node: >=14.0.0; ExpressJS: ^4.18.2; bcrypt: ^5.1.0; jsonwebtoken: ^8.5.1; mongoose: ^6.7.4; nodemon: ^2.0.20
 
 ## Setup
