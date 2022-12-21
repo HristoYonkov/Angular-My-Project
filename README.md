@@ -10,6 +10,7 @@ The app is like sale store with basic functionality. Every user(not logged in) h
 Every logged in user can buy books form the store if he is not the creator and already did not bought the book. The buyed books are going in profile page under the buyed books (if any), from there the user can enter into the details also!
 
 TechStack:
+
 Client Angular: CLI: 14.2.8; TypeScript: ~4.7.2;
 
 Server: Node: >=14.0.0; ExpressJS: ^4.18.2; bcrypt: ^5.1.0; jsonwebtoken: ^8.5.1; mongoose: ^6.7.4; nodemon: ^2.0.20
