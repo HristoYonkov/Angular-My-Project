@@ -17,16 +17,16 @@ Server: Node: >=14.0.0; ExpressJS: ^4.18.2; bcrypt: ^5.1.0; jsonwebtoken: ^8.5.1
 
 ## Setup
 
-To run Front End: - In directory "Book-Store", open inside cmd and 
+- To run Front End: - In directory "Book-Store", open inside cmd and 
 run:
 
 $ npm install,
 
 $ npm start 
 
-- Which opens the app at http://localhost:4200 in your browser. 
+Which opens the app at http://localhost:4200 in your browser. 
 
-To run Rest Service: - Open RestService folder for server, open inside cmd and
+- To run Rest Service: - Open RestService folder for server, open inside cmd and
 run:
 
 $ npm install,
