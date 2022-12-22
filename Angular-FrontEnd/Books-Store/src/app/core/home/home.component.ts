@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   bookList: IBook[] = [];
   searchResult = <any>[];
   searchType: string = 'Title';
+  loading: boolean = true;
 
   constructor(
     private bookService: BookService,
@@ -23,16 +24,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-
       this.bookService.loadBooks().subscribe({
         next: (books) => {
           this.bookList = books
           this.searchResult = books
+          this.loading = false
         },
         error: (err) => {
           console.log(err);
           this.authService.errorMessage = 'Server is crashed!'
           this.router.navigate(['error'])
+          this.loading = false
         }
       })
 
@@ -49,27 +51,32 @@ export class HomeComponent implements OnInit {
   
   searchHandler(search: string) {
     this.bookList = [];
+    this.loading = true
+    setTimeout(() => {
     
-    if (search !== '') {
-      this.searchResult?.forEach((book: any) => {
-        let title = book.title.toLowerCase()
-        let genre = book.genre.toLowerCase()
-        
-        if (this.searchType === 'Genre') {
-          if (genre.startsWith(search.toLowerCase())) {
-            this.bookList.push(book)
+      if (search !== '') {
+        this.searchResult?.forEach((book: any) => {
+          let title = book.title.toLowerCase()
+          let genre = book.genre.toLowerCase()
+
+          if (this.searchType === 'Genre') {
+            if (genre.startsWith(search.toLowerCase())) {
+              this.bookList.push(book)
+            }
+
+          } else {
+            if (title.startsWith(search.toLowerCase())) {
+              this.bookList.push(book)
+            }
           }
-          
-        } else {
-          if (title.startsWith(search.toLowerCase())) {
-            this.bookList.push(book)
-          }
-        }
-      })
-      
-    } else {
-      this.bookList = this.searchResult;
-    }
+        })
+
+      } else {
+        this.bookList = this.searchResult;
+      }
+      this.loading = false;
+    }, 300) 
+
   }
 
 }
