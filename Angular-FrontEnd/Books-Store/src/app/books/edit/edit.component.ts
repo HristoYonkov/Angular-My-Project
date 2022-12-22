@@ -31,6 +31,8 @@ export class EditComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.authservice.errorMessage = 'Book does not exist!'
+        this.router.navigate(['error'])
       }
     })
   }
