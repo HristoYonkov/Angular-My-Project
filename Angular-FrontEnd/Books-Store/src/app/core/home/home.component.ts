@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
     }, 300) 
   }
 
+
   typeHandler() {
     if (this.searchType === 'Title') {
       this.searchType = 'Genre';
